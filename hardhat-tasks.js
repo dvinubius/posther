@@ -31,31 +31,31 @@ module.exports = () => {
   );
 
   const deploy = require("./scripts/deploy");
-  task("deploy", "Deploys PosterMinGas", async (taskArgs, hre) => {
+  task("deploy", "Deploys EthPoster", async (taskArgs, hre) => {
     await deploy(hre);
   });
 
   const getDeployment = require("./scripts/last-deployed");
   task(
     "last-deployed",
-    "Shows latest deployment of PosterMinGas and its balance",
+    "Shows latest deployment of EthPoster and its balance",
     async (taskArgs, hre) => {
-      const poster = await getDeployment(hre, "PosterMinGas", true);
-      if (!poster) return;
-      console.log("====== Contract PosterMinGas ======= ");
-      console.log("Deployed at: " + colAddrContract(poster.address));
-      console.log("Owner: " + colAddrEOA(await poster.owner()));
+      const ethPoster = await getDeployment(hre, "EthPoster", true);
+      if (!ethPoster) return;
+      console.log("====== Contract EthPoster ======= ");
+      console.log("Deployed at: " + colAddrContract(ethPoster.address));
+      console.log("Owner: " + colAddrEOA(await ethPoster.owner()));
       console.log("==================================== ");
     }
   );
 
-  task("post", "Posts given text")
+  task("do-post", "Posts given text")
     .addParam("text", "Text to be posted")
     .setAction(async (taskArgs, hre) => {
-      const poster = await getDeployment(hre, "PosterMinGas");
+      const ethPoster = await getDeployment(hre, "EthPoster");
       const text = taskArgs.text;
-      const fee = await poster.fee();
-      const tx = await poster.post(text, {
+      const fee = await ethPoster.fee();
+      const tx = await ethPoster.post(text, {
         value: fee,
       });
       console.log("Post TX sent with: ", text);
@@ -63,20 +63,17 @@ module.exports = () => {
       console.log("TX mined: ", tx.hash);
     });
 
-  task("post-of-tx")
+  task("get-post")
     .addParam("txid", "Post transaction id")
     .setAction(async (taskArgs, hre) => {
       const tx = await ethers.provider.getTransaction(taskArgs.txid);
-      const PosterMinGas = await hre.ethers.getContractFactory("PosterMinGas");
-      const postText = PosterMinGas.interface.decodeFunctionData(
-        "post",
-        tx.data
-      );
+      const EthPoster = await hre.ethers.getContractFactory("EthPoster");
+      const postText = EthPoster.interface.decodeFunctionData("post", tx.data);
       console.log(postText[0]);
     });
 
-  const { printPosts } = require("./scripts/scan-posts");
-  task("posts-from")
+  const { printPosts } = require("./scripts/posts-from");
+  task("get-posts-from")
     .addParam("account", "Account whose posts we query")
     .setAction(async (taskArgs, hre) => {
       await printPosts(hre, taskArgs.account);

@@ -28,9 +28,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * 
  * This contract can be configured to take fees from posters.
  */
-contract PosterMinGas is Ownable {
-    // Reserved for misc configs
-    mapping(string => uint256) private posterConfig;
+contract EthPoster is Ownable {
 
     // Registered service accounts
     mapping (address => bool) private svcAcct;

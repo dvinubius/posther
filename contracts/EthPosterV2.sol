@@ -102,7 +102,7 @@ library Tools {
  * It starts small and only grows in time. This way the short links will be as short as possible.
  * 
  */
-contract PosterComfy is Ownable {
+contract EthPosterV2 is Ownable {
     // Reserved for misc configs
     mapping(string => uint256) private calldataStorageConfig;
 

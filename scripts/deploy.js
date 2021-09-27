@@ -2,20 +2,20 @@ require("dotenv").config();
 const { colAddrEOA, colAddrContract, colPath } = require("./utils");
 
 module.exports = async function main(hre) {
-  const Poster = await hre.ethers.getContractFactory("PosterMinGas");
+  const EthPoster = await hre.ethers.getContractFactory("EthPoster");
 
   console.log("Network: ", hre.network.name);
 
-  console.log(" = = = Deploying PosterMinGas ...");
-  const poster = await Poster.deploy(
+  console.log(" = = = Deploying EthPoster ...");
+  const ethPoster = await EthPoster.deploy(
     hre.ethers.utils.parseUnits(hre.network.config.fee)
   );
-  const ctrct = await poster.deployed();
+  const ctrct = await ethPoster.deployed();
   const { creates, hash, blockNumber } = ctrct.deployTransaction;
 
-  console.log("PosterMinGas deployed to:", colAddrContract(poster.address));
-  console.log("Owner is ", colAddrEOA(await poster.owner()));
-  logDeployment(hre.network.name, "PosterMinGas", [creates, blockNumber, hash]);
+  console.log("EthPoster deployed to:", colAddrContract(ethPoster.address));
+  console.log("Owner is ", colAddrEOA(await ethPoster.owner()));
+  logDeployment(hre.network.name, "EthPoster", [creates, blockNumber, hash]);
 };
 
 const fs = require("fs");

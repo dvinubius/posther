@@ -4,7 +4,7 @@ const getDeployment = require("./last-deployed");
 const getPosts = async (hre, account) => {
   const provider = hre.ethers.provider;
   let latestBlockNo = await provider.getBlockNumber(); // most recent block
-  const ethPoster = await getDeployment(hre, "PosterMinGas");
+  const ethPoster = await getDeployment(hre, "EthPoster");
   const contractAddr = ethPoster.address;
   const deploymentBlockNo = +ethPoster.deployment.blockNumber;
 
@@ -33,10 +33,12 @@ const getPosts = async (hre, account) => {
 
 module.exports = {
   /**
-   * Returns the parsed post transactions
+   * Returns the parsed transactions of posts made by account
    */
   getPosts: getPosts,
-
+  /**
+   * Prints all posts made by account
+   */
   printPosts: async (hre, account) => {
     const posts = await getPosts(hre, account);
     const printables = posts.map((parsedTx) => ({
