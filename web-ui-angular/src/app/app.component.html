@@ -1,0 +1,3 @@
+<h2 *ngIf="!connected && !error">Connecting...</h2>
+<h2 *ngIf="error">{{ error }}</h2>
+<router-outlet *ngIf="connected"></router-outlet>

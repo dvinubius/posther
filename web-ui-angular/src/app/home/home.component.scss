@@ -1,0 +1,71 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  max-width: 470px;
+}
+
+.card {
+  display: block;
+  min-width: 500px;
+  width: fit-content;
+  list-style: none;
+  font-size: 0.9em;
+  color: black;
+  border: 1px solid lightblue;
+  border-radius: 0.2rem;
+  padding: 12px;
+  margin-bottom: 12px;
+
+  position: relative;
+  .read-link {
+    border-radius: 0.2rem;
+    padding: 6px 8px;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in;
+    background-color: lightblue;
+
+    &:visited {
+      color: currentColor;
+    }
+    &:hover {
+      background-color: rgb(228, 235, 245);
+    }
+  }
+}
+
+.tx {
+  display: flex;
+  align-items: center;
+
+  .tx-hash {
+    font-weight: bolder;
+    color: rgb(31, 31, 150);
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 12px;
+  }
+
+  .tx-link {
+    margin-top: -3px;
+    a {
+      font-size: 0.8em;
+      text-decoration: none;
+      &:visited {
+        color: currentColor;
+      }
+    }
+  }
+}
+
+table tr td:first-child {
+  width: 120px;
+}

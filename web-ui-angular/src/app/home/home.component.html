@@ -1,0 +1,43 @@
+<h1>EthPoster</h1>
+<ul>
+  <li><strong>Proof-of-Concept</strong></li>
+  <li>
+    <strong>On-chain</strong> persistence of posts, based on
+    <strong>calldata</strong>
+  </li>
+  <li>Using calldata (not storage) reduces gas costs</li>
+  <li>Connects to Ethereum Kovan</li>
+</ul>
+<hr />
+<h2>Posts</h2>
+<div class="card" *ngFor="let item of logs">
+  <table>
+    <tr>
+      <td>Block:</td>
+      <td>{{ item.blockNumber }}</td>
+    </tr>
+    <tr>
+      <td>Tx:</td>
+      <td>
+        <div class="tx">
+          <div class="tx-hash">{{ item.txHash }}</div>
+          <div class="tx-link">
+            <a
+              [href]="txLink(item.txHash)"
+              target="_blank"
+              title="View On Etherscan"
+              >🔗</a
+            >
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Poster Code:</td>
+      <td>{{ item.storageCode }}</td>
+    </tr>
+  </table>
+  <a [routerLink]="[item.storageCode]" class="read-link"
+    ><div>READ POST</div></a
+  >
+</div>
