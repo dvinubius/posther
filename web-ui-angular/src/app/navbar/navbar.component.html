@@ -1,0 +1,15 @@
+<div class="navbar">
+  <div class="title">{{ title }}</div>
+  <ng-container *ngIf="web3Ctx$ | async as ctx">
+    <div class="ctx-item">
+      <div class="label">Network:</div>
+      <div class="network">{{ ctx.networkName }}</div>
+    </div>
+    <div class="ctx-item">
+      <div class="label">You:</div>
+      <div class="status" [class.no-connection]="!ctx.signer">
+        {{ account(ctx) }}
+      </div>
+    </div>
+  </ng-container>
+</div>

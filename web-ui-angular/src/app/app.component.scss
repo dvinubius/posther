@@ -1,7 +1,10 @@
 :host {
   display: block;
+  height: 100vh;
+}
+
+.content {
   padding: 24px;
   max-width: 600px;
   margin: auto;
-  height: 100vh;
 }

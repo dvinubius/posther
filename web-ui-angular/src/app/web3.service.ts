@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { PostTransaction } from './models/post-transaction.model';
 import { Post } from './models/post.model';
 import detectEthereumProvider from '@metamask/detect-provider';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Observable } from 'rxjs';
 
 export enum Error {
   NO_PROVIDER = 'Could not connect to Ethereum. Make sure you have Metamask installed.',
@@ -18,8 +18,11 @@ export enum Error {
 }
 
 export interface Web3Context {
+  foundProvider: boolean;
   chainId?: number;
+  networkName?: string;
   foundContract: boolean;
+  signer?: string;
 }
 
 @Injectable({
@@ -31,7 +34,11 @@ export class Web3Service {
   private signer!: Signer;
   private deploymentBlockNo!: number;
 
-  web3Context$ = new BehaviorSubject<Web3Context>({ foundContract: false });
+  private _web3Context$ = new BehaviorSubject<Web3Context>({
+    foundProvider: false,
+    foundContract: false,
+  });
+  public web3Context$: Observable<Web3Context>;
 
   private _noProviderError: string = Error.NO_PROVIDER;
   get noProviderError() {
@@ -54,6 +61,7 @@ export class Web3Service {
   }
 
   constructor(private ngZone: NgZone) {
+    this.web3Context$ = this._web3Context$.asObservable();
     this.initProvider();
   }
 
@@ -63,16 +71,26 @@ export class Web3Service {
     const ethereum = (await detectEthereumProvider()) as any;
     if (!ethereum) {
       console.error('Could not establish ethereum provider');
+      return;
     }
-    this._noProviderError = '';
 
+    // We have a provider
+    this._noProviderError = '';
     this.provider = new ethers.providers.Web3Provider(
       ethereum as ExternalProvider,
       'any' // this is needed in order for network change to be supported
     );
     console.log('Provider: ', this.provider);
+    const network = await this.provider.getNetwork();
+    this._web3Context$.next({
+      ...this._web3Context$.value,
+      foundProvider: true,
+      chainId: network.chainId,
+      networkName: network.name,
+    });
 
     await this.connectContract();
+    await this.connectAccounts();
 
     ethereum.on('chainChanged', async (_: any) => {
       // Reload may be useful when handling chain changes gets too complicated.
@@ -83,11 +101,13 @@ export class Web3Service {
       // external events like the ones from metamask trigger no change detection -> ngZone
       this.ngZone.run(async () => {
         const network = await this.provider.getNetwork();
-        this.web3Context$.next({
-          foundContract: false,
+        this._web3Context$.next({
+          ...this._web3Context$.value,
           chainId: network.chainId,
+          networkName: network.name,
         });
         this.connectContract();
+        this.connectAccounts();
       });
     });
   }
@@ -103,6 +123,10 @@ export class Web3Service {
       this._noSignerError = Error.NO_ACCOUNT;
     }
     console.log('Signer: ', await this.signer.getAddress());
+    this._web3Context$.next({
+      ...this._web3Context$.value,
+      signer: await this.signer.getAddress(),
+    });
   }
 
   async connectContract() {
@@ -129,7 +153,10 @@ export class Web3Service {
 
     console.log('Contract: ');
     console.log(this.ethPoster);
-    this.web3Context$.next({ foundContract: true, chainId: network.chainId });
+    this._web3Context$.next({
+      ...this._web3Context$.value,
+      foundContract: true,
+    });
   }
 
   async isLocal() {

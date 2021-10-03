@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PosterComponent } from './poster/poster.component';
 import { FormsModule } from '@angular/forms';
 import { PostCardComponent } from './post-card/post-card.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PostCardComponent } from './post-card/post-card.component';
     HomeComponent,
     PosterComponent,
     PostCardComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

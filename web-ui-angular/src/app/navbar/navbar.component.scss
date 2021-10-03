@@ -1,0 +1,46 @@
+.navbar {
+  height: 50px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.title {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.ctx-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .label {
+    margin-right: 6px;
+  }
+
+  & > div:last-child {
+    padding: 6px 12px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    border: 1px solid rgb(230, 173, 206);
+    border-radius: 12px;
+  }
+}
+
+.network {
+  width: 140px;
+}
+.status {
+  width: 200px;
+  font-weight: bolder;
+  letter-spacing: 0.09em;
+  &.no-connection {
+    background-color: rgb(243, 242, 242);
+  }
+}
