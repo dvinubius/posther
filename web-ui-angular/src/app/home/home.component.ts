@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Post, Web3Service } from '../web3.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Web3Service } from '../web3.service';
+import { PostTransaction } from '../models/post-transaction.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -7,15 +9,22 @@ import { Post, Web3Service } from '../web3.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  logs: Post[] | undefined;
+  targetNetwork = environment.contractNetwork;
 
-  constructor(private web3Service: Web3Service) {}
+  postTxs!: PostTransaction[];
+
+  constructor(public web3Svc: Web3Service) {}
 
   ngOnInit() {
-    this.web3Service.getLogs().then((logs) => (this.logs = logs));
+    this._getPosts();
+    this.web3Svc.web3Context$.subscribe((_) => this._getPosts());
   }
 
-  txLink(hash: string) {
-    return `https://kovan.etherscan.io/address/${hash}`;
+  private async _getPosts() {
+    try {
+      this.postTxs = await this.web3Svc.getPosts();
+    } catch (err) {
+      console.error(err);
+    }
   }
 }

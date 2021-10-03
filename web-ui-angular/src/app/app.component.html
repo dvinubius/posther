@@ -1,3 +1,11 @@
-<h2 *ngIf="!connected && !error">Connecting...</h2>
-<h2 *ngIf="error">{{ error }}</h2>
-<router-outlet *ngIf="connected"></router-outlet>
+<ng-container
+  *ngIf="web3Svc.noProviderError; then error; else page"
+></ng-container>
+
+<ng-template #error>
+  <p class="error">{{ web3Svc.noProviderError }}</p>
+</ng-template>
+
+<ng-template #page>
+  <router-outlet></router-outlet>
+</ng-template>

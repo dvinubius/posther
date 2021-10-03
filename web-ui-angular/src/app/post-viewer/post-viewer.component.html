@@ -1,0 +1,12 @@
+<ng-container *ngIf="show">
+  <ng-container *ngIf="pageError; then error; else post"></ng-container>
+
+  <ng-template #error>
+    <p class="error">{{ pageError }}</p>
+  </ng-template>
+
+  <ng-template #post>
+    <h2>{{ postText }}</h2>
+    <p class="date">{{ postDate }}</p>
+  </ng-template>
+</ng-container>

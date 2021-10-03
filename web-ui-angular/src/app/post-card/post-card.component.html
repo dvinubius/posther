@@ -1,0 +1,35 @@
+<div class="card">
+  <table>
+    <tr>
+      <td>Block:</td>
+      <td>{{ tx.blockNumber }}</td>
+    </tr>
+    <tr>
+      <td>Tx:</td>
+      <td>
+        <div class="tx">
+          <div class="tx-hash">{{ tx.txHash }}</div>
+          <div class="tx-link" *ngIf="showLinkToEtherscan">
+            <a
+              [href]="txLink(tx.txHash)"
+              target="_blank"
+              title="View On Etherscan"
+              >🔗</a
+            >
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Posted:</td>
+      <td>{{ dateForPostTx(tx) }}</td>
+    </tr>
+    <tr>
+      <td>Says:</td>
+      <td>
+        <div class="post-text">{{ tx.text }}</div>
+      </td>
+    </tr>
+  </table>
+  <a [routerLink]="[tx.txHash]" class="read-link"><div>READ POST</div></a>
+</div>

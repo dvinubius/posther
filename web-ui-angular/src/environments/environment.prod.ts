@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  contractNetwork: '',
+  chainId: 0,
+  contractAddress: '',
+  deploymentBlockNo: 0,
 };
