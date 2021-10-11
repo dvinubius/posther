@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  contractNetwork: 'ganache',
+  contractNetwork: 'local ganache',
   chainId: 1337,
-contractAddress: "0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7",
-deploymentBlockNo: 7,
+contractAddress: "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+deploymentBlockNo: 1,
+defaultProviderUrl: "http://localhost:8545"
 };

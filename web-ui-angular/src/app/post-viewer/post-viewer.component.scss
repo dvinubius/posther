@@ -2,6 +2,17 @@ h2 {
   margin-top: 20vh;
 }
 
-.date {
-  text-align: right;
+.date,
+.author {
+  max-width: 200px;
+  margin-left: auto;
+  font-size: 0.8em;
+}
+
+.author {
+  margin-left: auto;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

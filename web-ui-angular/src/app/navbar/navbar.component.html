@@ -1,13 +1,17 @@
-<div class="navbar">
-  <div class="title">{{ title }}</div>
+<div class="navbar" *ngIf="isInitialized">
+  <div class="title" [routerLink]="['/']">{{ title }}</div>
   <ng-container *ngIf="web3Ctx$ | async as ctx">
     <div class="ctx-item">
-      <div class="label">Network:</div>
-      <div class="network">{{ ctx.networkName }}</div>
+      <div class="label">Network</div>
+      <div class="network">{{ networkName(ctx) }}</div>
     </div>
     <div class="ctx-item">
-      <div class="label">You:</div>
-      <div class="status" [class.no-connection]="!ctx.signer">
+      <div class="label">Me</div>
+      <div
+        class="status"
+        [class.no-connection]="!ctx.signer"
+        (click)="connect(!ctx.signer)"
+      >
         {{ account(ctx) }}
       </div>
     </div>

@@ -1,0 +1,4 @@
+module.exports = {
+  'network_id1': 'url1',
+  'network_id2': 'url2',
+}

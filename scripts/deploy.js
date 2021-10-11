@@ -11,27 +11,40 @@ module.exports = async function main(hre) {
     hre.ethers.utils.parseUnits(hre.network.config.fee)
   );
   const ctrct = await ethPoster.deployed();
-  const { creates, hash, blockNumber } = ctrct.deployTransaction;
+  const { creates, hash, blockNumber, chainId } = ctrct.deployTransaction;
 
   console.log("EthPoster deployed to:", colAddrContract(ethPoster.address));
   console.log("Owner is ", colAddrEOA(await ethPoster.owner()));
-  logDeployment(hre.network.name, "EthPoster", [creates, blockNumber, hash]);
+  logDeployment(hre.network.name, "EthPoster", [
+    chainId,
+    creates,
+    blockNumber,
+    hash,
+  ]);
 };
 
 const fs = require("fs");
 const logDeployment = async (
   networkName,
   contractName,
-  [contractAddress, blockNumber, txHash]
+  [chainId, contractAddress, blockNumber, txHash]
 ) => {
   try {
-    const dirPath = `artifacts/contracts/deployed/${networkName}`;
+    const entry = { chainId, contractAddress, blockNumber, txHash };
+
+    // const dirPath = `artifacts/contracts/deployed/${networkName}`; // would have made more sense, but files on this path are deleted when running npx hardhat console
+    const dirPath = `my-deployments/${networkName}`;
     fs.mkdirSync(dirPath, { recursive: true }, () => {});
-    const filePath = `${dirPath}/${contractName}.txt`;
+    const filePath = `${dirPath}/${contractName}_deployed.json`;
+    const allLogs = fs.existsSync(filePath)
+      ? JSON.parse(fs.readFileSync(filePath))
+      : [];
+    allLogs.push(entry);
+
     fs.writeFileSync(
       filePath,
-      `${contractAddress};${blockNumber};${txHash}\n`,
-      { flag: "a+" },
+      JSON.stringify(allLogs),
+      { flag: "w" },
       () => {}
     );
     console.log("Saved deployment address to ", colPath(filePath));

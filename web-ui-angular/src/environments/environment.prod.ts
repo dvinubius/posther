@@ -4,4 +4,5 @@ export const environment = {
   chainId: 0,
   contractAddress: '',
   deploymentBlockNo: 0,
+  defaultProviderUrl: '',
 };

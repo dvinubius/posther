@@ -1,15 +1,15 @@
 <app-navbar></app-navbar>
 
-<div class="content">
-  <ng-container
-    *ngIf="web3Svc.noProviderError; then error; else page"
-  ></ng-container>
+<div class="scroller">
+  <div class="content" *ngIf="isInitialized">
+    <ng-container *ngIf="hasNoProvider; then error; else page"></ng-container>
 
-  <ng-template #error>
-    <p class="error">{{ web3Svc.noProviderError }}</p>
-  </ng-template>
+    <ng-template #error>
+      <p class="error">{{ noProviderError }}</p>
+    </ng-template>
 
-  <ng-template #page>
-    <router-outlet></router-outlet>
-  </ng-template>
+    <ng-template #page>
+      <router-outlet></router-outlet>
+    </ng-template>
+  </div>
 </div>

@@ -1,7 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Web3Service } from '../web3.service';
+import { Web3Service, Web3Context } from '../web3.service';
 import { PostTransaction } from '../models/post-transaction.model';
 import { environment } from '../../environments/environment';
+import { filter } from 'rxjs/operators';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-home',
@@ -11,20 +13,35 @@ import { environment } from '../../environments/environment';
 export class HomeComponent implements OnInit {
   targetNetwork = environment.contractNetwork;
 
-  postTxs!: PostTransaction[];
+  postTxs: PostTransaction[] | undefined;
 
-  constructor(public web3Svc: Web3Service) {}
+  onlyMine = false;
+
+  constructor(public web3Svc: Web3Service, public postsSvc: PostsService) {}
 
   ngOnInit() {
-    this._getPosts();
-    this.web3Svc.web3Context$.subscribe((_) => this._getPosts());
+    this.web3Svc.web3Context$
+      .pipe(filter((ctx: Web3Context) => ctx.foundContract))
+      .subscribe(() => this._getPosts());
+
+    this.web3Svc.web3Context$
+      .pipe(filter((ctx: Web3Context) => !ctx.signer))
+      .subscribe(() => (this.onlyMine = false));
   }
 
   private async _getPosts() {
-    try {
-      this.postTxs = await this.web3Svc.getPosts();
-    } catch (err) {
-      console.error(err);
+    this.postTxs = await this.postsSvc.getPosts(this.onlyMine);
+  }
+
+  async toggleMine() {
+    this.onlyMine = !this.onlyMine;
+    if (this.onlyMine) {
+      const hasConnectedAccount = await this.web3Svc.userConnectAccount();
+      if (!hasConnectedAccount) {
+        this.onlyMine = false;
+        return;
+      }
     }
+    this._getPosts();
   }
 }

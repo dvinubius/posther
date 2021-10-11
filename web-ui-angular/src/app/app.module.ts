@@ -9,6 +9,8 @@ import { PosterComponent } from './poster/poster.component';
 import { FormsModule } from '@angular/forms';
 import { PostCardComponent } from './post-card/post-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ClipboardModule } from 'ngx-clipboard';
+import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     PosterComponent,
     PostCardComponent,
     NavbarComponent,
+    ToggleButtonComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ClipboardModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,4 @@
-const utils = require("./utils");
-const getDeployment = require("./last-deployed");
+const { getDeployment } = require("./last-deployed");
 
 const getPosts = async (hre, account) => {
   const provider = hre.ethers.provider;
@@ -24,7 +23,7 @@ const getPosts = async (hre, account) => {
         parsedPostTxs.push({
           ...parsedTx,
           blockNumber: i,
-          timestamp: block.timestamp,
+          timestamp: block.timestamp * 1000,
         });
     });
   }

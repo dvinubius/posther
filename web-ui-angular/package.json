@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "init-deployments": "mkdir -p ./eth/deployed && cp -r ../artifacts/contracts/deployed/ ./eth/deployed",
-    "sync-deployments": "copy-and-watch --watch ../artifacts/contracts/deployed/* ./eth/deployed",
+    "init-deployments": "mkdir -p ./eth/deployed && cp -r ../my-deployments/ ./eth/deployed",
+    "sync-deployments": "cp ../artifacts/contracts/deployed/* ./eth/deployed",
     "dev-update-contract": "nodemon ./scripts/dev-update-contract.js --watch eth/deployed/ganache",
-    "start": "npm run init-deployments && (npm run sync-deployments & npm run dev-update-contract & ng serve)",
+    "start": "npm run init-deployments && (npm run dev-update-contract & ng serve)",
     "prod-update-contract": "node ./scripts/prod-update-contract.js",
     "build": "npm run setup-contract-for-build && ng build",
     "test": "ng test",
@@ -25,6 +25,8 @@
     "@angular/router": "~11.1.2",
     "@metamask/detect-provider": "^1.2.0",
     "ethers": "^5.4.7",
+    "evm-chains": "^0.2.0",
+    "ngx-clipboard": "^14.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

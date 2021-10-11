@@ -1,8 +1,10 @@
 const fs = require("fs");
 const updateEnv = require("./update-contract-info");
+const providerUrls = require("../providers");
 const { getDeploymentInfo } = require("../../scripts/last-deployed");
+const getDefaultProviderUrl = require("./default-provider-url");
 
-const setAddressInProdEnv = async () => {
+const setProdEnv = async () => {
   try {
     const network = process.argv[2];
     if (!network) {
@@ -10,17 +12,18 @@ const setAddressInProdEnv = async () => {
     }
 
     const baseDir = "src/eth-deployments";
-    const { contractAddress } = await getDeploymentInfo(
+    const { contractAddress, blockNumber } = await getDeploymentInfo(
       baseDir,
       network,
       "EthPoster",
       true
     );
     const envPath = "src/environments/environment.prod.ts";
-    updateEnv(envPath, contractAddress);
+    const providerUrl = providerUrls[network.id];
+    updateEnv(envPath, contractAddress, blockNumber, providerUrl);
   } catch (e) {
     console.error(e);
   }
 };
 
-setAddressInProdEnv();
+setProdEnv();

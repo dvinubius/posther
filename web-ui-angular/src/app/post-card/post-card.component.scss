@@ -1,11 +1,12 @@
+@import "../../assets/variables.scss";
+
 .card {
   display: block;
   min-width: 500px;
-  width: fit-content;
   list-style: none;
   font-size: 0.9em;
   color: black;
-  border: 1px solid lightblue;
+  border: 1px solid $primary-col;
   border-radius: 0.2rem;
   padding: 12px;
   margin-bottom: 12px;
@@ -20,13 +21,13 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.1s ease-in;
-    background-color: lightblue;
+    background-color: $primary-col;
 
     &:visited {
       color: currentColor;
     }
     &:hover {
-      background-color: rgb(228, 235, 245);
+      background-color: $hover-col;
     }
   }
 }
@@ -37,12 +38,12 @@
 
   .tx-hash {
     font-weight: bolder;
-    color: rgb(31, 31, 150);
+    color: $tx-col;
     max-width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 12px;
+    margin-right: 16px;
   }
 
   .tx-link {
@@ -70,4 +71,18 @@ table tr td:first-child {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-right: 12px;
+}
+
+.copy {
+  font-size: 0.7em;
+  font-weight: bold;
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 2px 4px;
+  transform: translateY(-1px);
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+  &:hover {
+    background-color: $primary-col;
+  }
 }

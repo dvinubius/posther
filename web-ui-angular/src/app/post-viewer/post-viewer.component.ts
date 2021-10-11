@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Web3Service } from '../web3.service';
 import { Post } from '../models/post.model';
 import { combineLatest } from 'rxjs';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-post-viewer',
@@ -12,29 +13,37 @@ import { combineLatest } from 'rxjs';
 export class PostViewerComponent implements OnInit {
   postText = '';
   postDate = '';
+  postAuthor = '';
 
   get pageError() {
     return (
-      this.web3Svc.noProviderError ||
+      this.web3Svc.noMetamaskError ||
       this.web3Svc.noContractError ||
-      this.web3Svc.postNotFoundError
+      this.postsSvc.postNotFoundError
     );
   }
 
   show = false;
 
-  constructor(private route: ActivatedRoute, public web3Svc: Web3Service) {}
+  constructor(
+    private route: ActivatedRoute,
+    public web3Svc: Web3Service,
+    public postsSvc: PostsService
+  ) {}
 
   ngOnInit() {
     const rParams$ = this.route.params;
     const change$ = combineLatest([rParams$, this.web3Svc.web3Context$]);
     change$.subscribe(async ([p, ctx]) => {
       if (ctx.foundContract) {
-        const stored: Post | null = await this.web3Svc.getPostFromTx(p.txHash);
-        if (!stored) return;
+        const post: Post | undefined = await this.postsSvc.getPostFromTx(
+          p.txHash
+        );
+        if (!post) return;
 
-        this.postText = stored.text;
-        this.postDate = stored.date.toLocaleString();
+        this.postText = post.text;
+        this.postDate = post.date.toLocaleString();
+        this.postAuthor = post.author;
       }
     });
 

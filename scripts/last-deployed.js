@@ -1,31 +1,62 @@
-const utils = require("./utils");
 const fs = require("fs");
-module.exports = async function getLatestDeployment(
-  hre,
+
+/**
+ * Keeping this more flexible in order to be used by frontend projects within a hardhat project
+ *
+ * @param {*} baseDir
+ * @param {*} networkName
+ * @param {*} contractName
+ * @param {*} verbose
+ *
+ * @returns {contractAddress, blockNumber, txHash}
+ */
+const getDeploymentInfo = (
+  baseDir,
+  networkName,
   contractName,
   verbose = false
-) {
-  const networkName = await hre.network.name;
+) => {
   try {
     const fileData = fs.readFileSync(
-      `artifacts/contracts/deployed/${networkName}/${contractName}.txt`,
+      `${baseDir}/${networkName}/${contractName}_deployed.json`,
       { encoding: "utf8", flag: "r" }
     );
-    const lines = fileData.substr(0, fileData.length - 1).split("\n");
-    const lastLine = lines[lines.length - 1];
-    const [address, blockNumber, hash] = lastLine.split(";");
+    const deployments = JSON.parse(fileData);
+    const deploymentInfo = deployments[deployments.length - 1];
+
     if (verbose) {
-      console.log(
-        `Found ${contractName} at: ${utils.colAddrContract(address)}`
-      );
+      console.log(`Found ${contractName} at: `);
+      console.log(deploymentInfo);
     }
-    const contract = await hre.ethers.getContractAt(contractName, address);
-    return {
-      ...contract,
-      deployment: { hash, blockNumber },
-    };
+    return deploymentInfo;
+  } catch (e) {
+    console.error("Deployment log retrieval error: ", e);
+  }
+};
+
+const getDeployment = async (hre, contractName, verbose = false) => {
+  try {
+    const networkName = await hre.network.name;
+    const baseDir = "my-deployments";
+    const { contractAddress, blockNumber, txHash } = getDeploymentInfo(
+      baseDir,
+      networkName,
+      contractName,
+      verbose
+    );
+    const contract = await hre.ethers.getContractAt(
+      contractName,
+      contractAddress
+    );
+    contract.deployment = { txHash, blockNumber };
+    return contract;
   } catch (e) {
     console.error(e);
-    console.log("No deployment was found");
+    console.error("====== No deployment was found");
   }
+};
+
+module.exports = {
+  getDeployment,
+  getDeploymentInfo,
 };

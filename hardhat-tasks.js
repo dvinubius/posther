@@ -35,7 +35,7 @@ module.exports = () => {
     await deploy(hre);
   });
 
-  const getDeployment = require("./scripts/last-deployed");
+  const { getDeployment } = require("./scripts/last-deployed");
   task(
     "last-deployed",
     "Shows latest deployment of EthPoster and its balance",
@@ -63,6 +63,26 @@ module.exports = () => {
       console.log("TX mined: ", tx.hash);
     });
 
+  task(
+    "do-post-ten-signers",
+    "Posts given text ten times, with different accounts"
+  ).setAction(async (taskArgs, hre) => {
+    const ethPoster = await getDeployment(hre, "EthPoster");
+    const baseText = "This is a test of the post functionality - no. ";
+    const fee = await ethPoster.fee();
+    const signers = (await hre.ethers.getSigners()).slice(0, 10);
+    const postings = signers.map(async (signer, idx) => {
+      const text = `${baseText}${idx}`;
+      const tx = await ethPoster.connect(signer).post(text, {
+        value: fee,
+      });
+      console.log("Post TX sent with: ", text);
+      await tx.wait();
+      console.log("TX mined: ", tx.hash);
+    });
+    await Promise.all(postings);
+  });
+
   task("get-post")
     .addParam("txid", "Post transaction id")
     .setAction(async (taskArgs, hre) => {
@@ -78,4 +98,9 @@ module.exports = () => {
     .setAction(async (taskArgs, hre) => {
       await printPosts(hre, taskArgs.account);
     });
+
+  const getReason = require("./scripts/get_reason");
+  task("get-reason", async (taskArgs, hre) => {
+    await getReason(hre);
+  });
 };
