@@ -12,7 +12,7 @@ export class PostsService {
     return this._postNotFoundError;
   }
 
-  constructor(private web3Svc: Web3Service) {}
+  constructor(public web3Svc: Web3Service) {}
   async getPosts(getOnlyMyOwn = false): Promise<PostTransaction[] | undefined> {
     if (!this.web3Svc.provider) {
       console.error(
@@ -133,5 +133,32 @@ export class PostsService {
       throw 'Could not retrieve block by number';
     }
     return block.timestamp * 1000;
+  }
+
+  async post(text: string) {
+    if (!this.web3Svc.injectedProvider) {
+      console.error(Web3Error.NO_METAMASK);
+      return;
+    }
+    if (!this.web3Svc.ethPoster || !this.web3Svc.deploymentBlockNo) {
+      console.error(Web3Error.WRONG_NETWORK_NO_CONTRACT);
+      return;
+    }
+    if (!this.web3Svc.signer) {
+      console.error(Web3Error.NO_ACCOUNT);
+      return;
+    }
+    const fee = await this.web3Svc.ethPoster.fee();
+    const signer = this.web3Svc.provider?.getSigner();
+    if (!signer) {
+      console.error(Web3Error.NO_ACCOUNT);
+      return;
+    }
+    const tx = await this.web3Svc.ethPoster
+      .connect(signer)
+      .post(text, { value: fee });
+    console.log('Post TX sent with: ', text);
+    await tx.wait();
+    console.log('TX mined: ', tx.hash);
   }
 }

@@ -66,12 +66,8 @@ contract EthPoster is Ownable {
         }
     }
 
-    /**
-     * Process as post if @param json is formatted correctly.
-     * It stores the transaction hash
-     */
-    function post(string memory json) public payable {
-        json = "";
+    function post(string memory text) public payable {
+        text = "";
         processFee();
     }
 

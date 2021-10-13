@@ -189,7 +189,7 @@ export class Web3Service {
       return false;
     }
     // metamask may be on another network. make sure our state is consistent
-    this.connectContract(this.injectedProvider);
+    await this.connectContract(this.injectedProvider);
     return true;
   }
 

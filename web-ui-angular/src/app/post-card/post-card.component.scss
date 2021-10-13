@@ -1,14 +1,17 @@
 @import "../../assets/variables.scss";
 
+$details-width: 290px;
 .card {
+  background-color: $poster-grey-2;
+  opacity: 0.8;
   display: block;
   min-width: 500px;
   list-style: none;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: black;
   border: 1px solid $primary-col;
   border-radius: 0.2rem;
-  padding: 12px;
+  padding: 8px;
   margin-bottom: 12px;
 
   position: relative;
@@ -27,7 +30,7 @@
       color: currentColor;
     }
     &:hover {
-      background-color: $hover-col;
+      background-color: $primary-hover-col;
     }
   }
 }
@@ -39,7 +42,7 @@
   .tx-hash {
     font-weight: bolder;
     color: $tx-col;
-    max-width: 200px;
+    max-width: $details-width;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -59,14 +62,14 @@
 }
 
 table tr td:first-child {
-  width: 120px;
+  width: 80px;
 }
 
 .post-text {
   font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
   color: grey;
-  max-width: 200px;
+  max-width: $details-width;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -5,4 +5,5 @@ export const environment = {
   contractAddress: '',
   deploymentBlockNo: 0,
   defaultProviderUrl: '',
+  maxPostLength: 80000,
 };

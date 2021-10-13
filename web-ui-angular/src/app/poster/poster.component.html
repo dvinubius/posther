@@ -1,5 +1,11 @@
-<h1>Post your message</h1>
+<h1>Your Message</h1>
 <div class="form">
-  <input type="text" [(ngModel)]="inputText" />
-  <div class="submit-btn">SEND</div>
+  <textarea
+    cols="50"
+    rows="24"
+    [maxlength]="maxPostLength"
+    [(ngModel)]="inputText"
+  ></textarea>
+  <div class="submit-btn" (click)="post()">SEND</div>
+  <div class="error">{{ error }}</div>
 </div>

@@ -11,7 +11,7 @@ import { PostsService } from '../posts.service';
   styleUrls: ['./post-viewer.component.scss'],
 })
 export class PostViewerComponent implements OnInit {
-  postText = '';
+  postParagraphs: string[] = [];
   postDate = '';
   postAuthor = '';
 
@@ -41,7 +41,7 @@ export class PostViewerComponent implements OnInit {
         );
         if (!post) return;
 
-        this.postText = post.text;
+        this.postParagraphs = post.text.split('\n');
         this.postDate = post.date.toLocaleString();
         this.postAuthor = post.author;
       }

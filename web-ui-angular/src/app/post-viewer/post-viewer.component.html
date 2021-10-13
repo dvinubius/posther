@@ -6,8 +6,12 @@
   </ng-template>
 
   <ng-template #post>
-    <h2>{{ postText }}</h2>
-    <p class="date">{{ postDate }}</p>
+    <div class="post-text">
+      <p *ngFor="let p of postParagraphs">
+        {{ p }}
+      </p>
+    </div>
     <p class="author">by {{ postAuthor }}</p>
+    <p class="date">{{ postDate }}</p>
   </ng-template>
 </ng-container>

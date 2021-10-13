@@ -1,9 +1,47 @@
+@import "../../assets/variables.scss";
+
 :host {
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding-top: 8vh;
 }
 
 .form {
-  width: 400px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  textarea {
+    margin-bottom: 36px;
+    font-size: 1em;
+    border-color: lightblue;
+    opacity: 0.8;
+    padding: 12px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .submit-btn {
+    width: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    letter-spacing: 0.06em;
+    color: rgb(51, 51, 51);
+    background-color: $secondary-col;
+    box-shadow: 0px 2px 6px 0px #d2b1c4;
+    font-weight: bolder;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+    &:hover {
+      background-color: $secondary-hover-col;
+    }
+  }
+
+  .error {
+    margin-top: 24px;
+  }
 }
