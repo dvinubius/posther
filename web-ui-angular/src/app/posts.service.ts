@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Web3Error, Web3Service } from './web3.service';
+import { Web3Service } from './web3.service';
 import { PostTransaction } from './models/post-transaction.model';
 import { ethers } from 'ethers';
 import { Web3Provider, JsonRpcProvider } from '@ethersproject/providers';
 import { Post } from './models/post.model';
+import { Web3Error } from './web3-error.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
@@ -13,7 +14,10 @@ export class PostsService {
   }
 
   constructor(public web3Svc: Web3Service) {}
-  async getPosts(getOnlyMyOwn = false): Promise<PostTransaction[] | undefined> {
+  async getMostRecentPosts(
+    howMany: number,
+    getOnlyMyOwn = false
+  ): Promise<PostTransaction[] | undefined> {
     if (!this.web3Svc.provider) {
       console.error(
         Web3Error.NO_DEFAULT_PROVIDER + '\n' + Web3Error.NO_METAMASK
@@ -53,7 +57,8 @@ export class PostsService {
       this.web3Svc.provider,
       deploymentBlockNo,
       latestBlockNo,
-      isMatch
+      isMatch,
+      howMany
     );
     return parsedPostTxs.map((parsedTx) => ({
       ...parsedTx,
@@ -65,10 +70,15 @@ export class PostsService {
     provider: Web3Provider | JsonRpcProvider,
     deploymentBlockNo: number,
     latestBlockNo: number,
-    isMatch: (tx: ethers.providers.TransactionResponse) => boolean
+    isMatch: (tx: ethers.providers.TransactionResponse) => boolean,
+    howMany: number
   ) {
     const parsedPostTxs: any[] = [];
-    for (let i = deploymentBlockNo; i <= latestBlockNo; i++) {
+    for (
+      let i = latestBlockNo;
+      i >= deploymentBlockNo && parsedPostTxs.length < howMany;
+      i--
+    ) {
       const block = await provider.getBlockWithTransactions(i);
       for (let tx of block.transactions ?? []) {
         if (!isMatch(tx)) continue;
@@ -135,7 +145,9 @@ export class PostsService {
     return block.timestamp * 1000;
   }
 
-  async post(text: string) {
+  async post(
+    text: string
+  ): Promise<ethers.providers.TransactionResponse | undefined> {
     if (!this.web3Svc.injectedProvider) {
       console.error(Web3Error.NO_METAMASK);
       return;
@@ -158,7 +170,6 @@ export class PostsService {
       .connect(signer)
       .post(text, { value: fee });
     console.log('Post TX sent with: ', text);
-    await tx.wait();
-    console.log('TX mined: ', tx.hash);
+    return tx;
   }
 }

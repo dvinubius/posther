@@ -1,0 +1,55 @@
+@import "../../assets/variables.scss";
+@import "../../assets/buttons.scss";
+@import "../../assets/typography.scss";
+
+:host {
+  display: block;
+  --pad: 24px;
+  --wid: calc(2 * #{$card-width} + #{$cards-gutter});
+  box-sizing: content-box;
+  padding: var(--pad);
+  max-width: var(--wid);
+  margin-left: calc((100vw - var(--wid) - 2 * var(--pad)) / 2);
+  flex-grow: 1;
+  margin-bottom: 40px;
+}
+
+.posts-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    @extend .text-h2;
+    width: $card-width;
+    margin-right: $cards-gutter;
+  }
+}
+
+.which-posts {
+  display: flex;
+  width: $card-width;
+
+  app-toggle-button {
+    margin-left: auto;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // height: 100%;
+  // overflow: scroll;
+  // flex-grow: 0;
+  & > * {
+    margin-bottom: $cards-gutter;
+    &:nth-child(odd) {
+      margin-right: $cards-gutter;
+    }
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+}

@@ -11,6 +11,8 @@ import { PostCardComponent } from './post-card/post-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
+import { ExplorerComponent } from './explorer/explorer.component';
+import { JazziconComponent } from './jazzicon/jazzicon.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
     PostCardComponent,
     NavbarComponent,
     ToggleButtonComponent,
+    ExplorerComponent,
+    JazziconComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ClipboardModule],
   providers: [],

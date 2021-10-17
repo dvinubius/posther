@@ -1,16 +1,11 @@
 <app-navbar></app-navbar>
 
 <div class="scroller">
-  <div class="content" *ngIf="isInitialized">
-    <ng-container *ngIf="hasNoProvider; then error; else page"></ng-container>
-
-    <ng-template #error>
-      <p class="error">{{ noProviderError }}</p>
-    </ng-template>
-
-    <ng-template #page>
+  <div class="content" *ngIf="web3Svc.isInitialized">
+    <ng-container *ngIf="web3Svc.hasProvider">
       <router-outlet></router-outlet>
-    </ng-template>
+    </ng-container>
   </div>
 </div>
 <div class="poc">proof of concept</div>
+<div class="bg-gradient"></div>

@@ -2,10 +2,15 @@
 <div class="form">
   <textarea
     cols="50"
-    rows="24"
+    rows="20"
     [maxlength]="maxPostLength"
     [(ngModel)]="inputText"
   ></textarea>
-  <div class="submit-btn" (click)="post()">SEND</div>
-  <div class="error">{{ error }}</div>
+  <div class="action-btn" (click)="post()" [class.disabled]="!!cannotPostError">
+    Post
+  </div>
+  <div class="status" [class.error]="hasTxError">{{ txStatus }}</div>
+</div>
+<div *ngIf="cannotPostError" class="error cannot-post">
+  {{ cannotPostError }}
 </div>

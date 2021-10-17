@@ -1,0 +1,31 @@
+@import "./variables.scss";
+
+.text-sm {
+  font-size: $font-size-sm;
+  line-height: 1.25rem;
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+  line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: $font-size-xl;
+  line-height: 1.75rem;
+}
+
+.text-h2 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 400;
+}
+
+.text-normal {
+  font-size: $font-size-normal;
+  line-height: 1.5rem;
+}
+
+.error {
+  color: $error-col;
+}

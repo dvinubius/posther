@@ -1,43 +1,35 @@
 @import "../../assets/variables.scss";
+@import "../../assets/buttons.scss";
 
 :host {
   display: flex;
   flex-direction: column;
-  position: relative;
-}
-
-ul {
-  max-width: 470px;
-  li {
-    line-height: 1.5em;
-  }
-}
-
-.posts-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-}
-
-.which-posts {
-  display: flex;
-  label {
-    margin-right: 16px;
+  padding: 128px 16px 64px;
+  & > * {
+    margin-bottom: 48px;
   }
 }
 
-.new-post-btn {
-  position: absolute;
-  top: calc(35px + #{$navbar-height});
-  right: 0px;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  background-color: $secondary-col;
-  box-shadow: 0px 2px 6px 0px #d2b1c4;
-  border-radius: 0.2rem;
-  cursor: pointer;
-  transition: all 0.1s ease-out;
-  &:hover {
-    background-color: $secondary-hover-col;
+h1 {
+  font-weight: 500;
+  font-size: 4.5rem;
+}
+
+.sub-title {
+  @extend .text-xl;
+  white-space: pre-wrap;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.action-btn {
+  height: 2rem;
+  width: 8rem;
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  h1 {
+    font-size: 3rem;
   }
 }

@@ -4,6 +4,7 @@ import { Web3Service } from '../web3.service';
 import { Post } from '../models/post.model';
 import { combineLatest } from 'rxjs';
 import { PostsService } from '../posts.service';
+import { Web3ErrorService } from '../web3-error.service';
 
 @Component({
   selector: 'app-post-viewer',
@@ -14,14 +15,6 @@ export class PostViewerComponent implements OnInit {
   postParagraphs: string[] = [];
   postDate = '';
   postAuthor = '';
-
-  get pageError() {
-    return (
-      this.web3Svc.noMetamaskError ||
-      this.web3Svc.noContractError ||
-      this.postsSvc.postNotFoundError
-    );
-  }
 
   show = false;
 

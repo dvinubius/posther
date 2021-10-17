@@ -1,0 +1,7 @@
+@import "../../assets/variables.scss";
+
+:host.wrapped {
+  border: 1px solid $posther-grey-4;
+  padding: 4px;
+  border-radius: $standard-bord-rad;
+}

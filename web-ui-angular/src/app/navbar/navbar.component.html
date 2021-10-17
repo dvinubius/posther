@@ -1,21 +1,56 @@
-<div class="navbar" *ngIf="isInitialized">
-  <div class="wrapper">
+<div class="navbar" *ngIf="web3Svc.isInitialized">
+  <div class="title-and-page-links" [class.small-screen]="isSmallScreen">
+    <div class="logo" [routerLink]="['/']"></div>
     <div class="title" [routerLink]="['/']">{{ title }}</div>
-    <ng-container *ngIf="web3Ctx$ | async as ctx">
-      <div class="ctx-item">
-        <div class="label">Network</div>
-        <div class="network">{{ networkName(ctx) }}</div>
+    <div
+      class="menu-icon"
+      [class.opened]="navMenuOpened"
+      *ngIf="isSmallScreen"
+      (click)="toggleNavMenuOpened($event)"
+    >
+      <div class="wrapper">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
       </div>
-      <div class="ctx-item">
-        <div class="label">Me</div>
-        <div
-          class="status"
-          [class.no-connection]="!ctx.signer"
-          (click)="connect(!ctx.signer)"
-        >
-          {{ account(ctx) }}
-        </div>
-      </div>
-    </ng-container>
+    </div>
+    <div class="page-links" [class.visible]="navMenuOpened">
+      <ul>
+        <li [routerLink]="['/']">Home</li>
+        <li [routerLink]="['/explorer', '']">Explore</li>
+        <li [routerLink]="['/read', '']">View</li>
+        <li [routerLink]="['/post']">Posth</li>
+      </ul>
+    </div>
   </div>
+  <div *ngIf="web3Ctx$ | async as ctx">
+    <div class="ctx-item network">
+      {{ networkName(ctx) }}
+    </div>
+    <div class="balance" *ngIf="ctx.signer">
+      {{ balance$ | async }}
+    </div>
+    <div
+      class="ctx-item account"
+      [class.no-connection]="!ctx.signer"
+      (click)="connect(!ctx.signer)"
+    >
+      <app-jazzicon [seed]="account(ctx)" [size]="18"></app-jazzicon>
+      {{ account(ctx) }}
+    </div>
+  </div>
+</div>
+
+<div
+  class="error-snack"
+  *ngIf="web3Svc.isInitialized && errorSvc.navbarStickyError"
+>
+  <p>{{ errorSvc.navbarStickyError }}</p>
+</div>
+<div
+  class="error-snack ok-error-snack"
+  *ngIf="web3Svc.isInitialized && errorSvc.metamaskWaitingError"
+>
+  <p>{{ errorSvc.metamaskWaitingError }}</p>
+  <div class="ok-btn" (click)="hideMetamaskWaitingError()">OK</div>
 </div>

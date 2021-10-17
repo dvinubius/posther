@@ -1,67 +1,65 @@
 <div class="card">
   <table>
     <tr>
-      <td>Author:</td>
+      <td>Tx:</td>
       <td>
         <div class="tx">
-          <div class="tx-hash">{{ tx.author }}</div>
-          <div
-            class="copy"
-            ngxClipboard
-            [cbContent]="tx.author"
-            title="Copy Address"
-          >
-            Copy
-          </div>
-          <div class="tx-link" *ngIf="showLinkToEtherscan">
-            <a
-              [href]="txLink(tx.author)"
-              target="_blank"
-              title="View Author On Etherscan"
-              >🔗</a
+          <div class="tx-hash">{{ hash }}</div>
+          <div class="mt-icon link-icon">
+            <a [href]="txLink" target="_blank" title="View On Etherscan"
+              ><span class="material-icons">link</span></a
             >
           </div>
+          <div
+            class="mt-icon copy-icon"
+            [class.used]="usedTxHashCopy"
+            ngxClipboard
+            [cbContent]="tx.txHash"
+            title="Copy Hash"
+            (click)="copiedTxHash()"
+          >
+            <span class="material-icons">{{ copyIconKeyTxHash }}</span>
+          </div>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Said:</td>
-      <td>
-        <div class="post-text">{{ tx.text }}</div>
       </td>
     </tr>
     <tr>
       <td>Date:</td>
-      <td>{{ dateForPostTx(tx) }}</td>
+      <td class="date">{{ date }}</td>
     </tr>
     <tr>
-      <td>Tx:</td>
+      <td>From:</td>
       <td>
-        <div class="tx">
-          <div class="tx-hash">{{ tx.txHash }}</div>
-          <div
-            class="copy"
-            ngxClipboard
-            [cbContent]="tx.txHash"
-            title="Copy Hash"
-          >
-            Copy
-          </div>
-          <div class="tx-link" *ngIf="showLinkToEtherscan">
+        <div class="author">
+          <app-jazzicon
+            [seed]="author"
+            [size]="18"
+            [wrapped]="true"
+          ></app-jazzicon>
+          <div class="address">{{ author }}</div>
+          <div class="mt-icon link-icon">
             <a
-              [href]="txLink(tx.txHash)"
+              [href]="authorLink"
               target="_blank"
-              title="View On Etherscan"
-              >🔗</a
+              title="View Author On Etherscan"
+              ><span class="material-icons">link</span></a
             >
+          </div>
+          <div
+            class="mt-icon copy-icon"
+            ngxClipboard
+            [cbContent]="tx.author"
+            title="Copy Address"
+            [class.used]="usedAuthorAddressCopy"
+            (click)="copiedAuthor()"
+          >
+            <span class="material-icons">{{ copyIconKeyAuthor }}</span>
           </div>
         </div>
       </td>
     </tr>
-    <tr>
-      <td>Block:</td>
-      <td>{{ tx.blockNumber }}</td>
-    </tr>
   </table>
-  <a [routerLink]="[tx.txHash]" class="read-link"><div>READ POST</div></a>
+  <hr />
+  <div class="post-text">{{ tx.text }}</div>
+  <a [routerLink]="['/read', tx.txHash]" class="read-link">View </a>
 </div>

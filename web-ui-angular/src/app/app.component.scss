@@ -18,31 +18,35 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: url(/assets/ethereum.png) center 35% no-repeat;
+    // background: url(/assets/ethereum.png) center 35% no-repeat;
     z-index: -1;
     opacity: 0.3;
-  }
-
-  .content {
-    padding: 24px;
-    max-width: 600px;
-    // margin: auto;
-    margin-left: calc((100vw - 648px) / 2);
-    flex-grow: 1;
-    margin-bottom: 40px;
   }
 }
 
 .poc {
-  color: #e0e0e0;
+  color: $tx-col;
+  border: 1px solid currentColor;
+  background-color: $primary-col-light;
   position: fixed;
-  left: -80px;
-  top: calc(133px + #{$navbar-height});
-  font-size: 1.5em;
-  transform: rotateZ(-26deg) translate(114px, -12px);
+  right: 32px;
+  bottom: -57px;
+  font-size: 0.85em;
+  transform: rotateZ(317deg) translate(114px, -12px);
   transform-origin: center;
   display: inline-block;
-  border: 3px solid currentColor;
-  padding: 4px 8px;
-  opacity: 0.6;
+  padding: 3px 38px;
+}
+
+.bg-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  width: 200vw;
+  height: 200vh;
+  background: $main-gradient;
+  transform: translate(-50vw, -100vh);
+  z-index: -1;
 }

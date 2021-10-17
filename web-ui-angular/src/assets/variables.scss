@@ -1,15 +1,62 @@
+// ==== typographic
+
+$font-ibm: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+$font-courier: "Courier New", Courier, monospace;
+$font-ibm-mono: "IBM Plex Mono", monospace;
+
+$font-size-normal: 1rem;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+
+// ==== layout
+
+$breakpoint-md: 972px;
+$navbar-height: 48px;
+$card-width: 300px;
+$cards-gutter: 24px;
+
+// ==== rainbows
+
 $tx-col: rgb(31, 31, 150);
 
-$primary-col: lightblue;
+$primary-col: hsl(195, 53%, 79%);
+$primary-col-light: hsl(215, 46%, 93%);
+$primary-col-dark: hsl(215, 66%, 43%);
+$primary-col-for-gradient: hsla(195, 53%, 79%, 0.2);
 
-$primary-hover-col: rgb(228, 235, 245);
+// $secondary-col: rgb(230, 173, 206);
+// $secondary-col-light: rgb(245, 220, 234);
 
-$secondary-col: rgb(230, 173, 206);
+$secondary-col: hsl(328, 80%, 64%);
+$secondary-col-for-gradient: hsl(328, 80%, 64%, 0.063);
+$secondary-col-light: hsl(328, 50%, 84%);
+$secondary-col-light2: hsl(328, 80%, 84%);
+$secondary-col-for-ctx-item: hsl(328, 61%, 94%);
 
-$secondary-hover-col: rgb(245, 220, 234);
+$error-col: hsl(328, 90%, 28%);
+// $error-col: hsl(195, 93%, 24%);
 
-$poster-grey-1: hsl(0, 0%, 98%);
+$posther-grey-1: hsl(0, 0%, 98%);
 
-$poster-grey-2: hsl(0, 0%, 99%);
+$posther-grey-2: hsl(0, 0%, 99%);
 
-$navbar-height: 50px;
+$posther-grey-3: hsl(0, 0%, 75%);
+
+$posther-grey-4: hsl(0, 0%, 89%);
+
+$posther-grey-5: hsl(0, 0%, 94%);
+
+$posther-grey-6: hsl(0, 0%, 97%);
+
+$posther-black: hsl(0, 0%, 6%);
+
+$main-gradient: radial-gradient(
+  50% 50% at 50% 50%,
+  $primary-col-for-gradient 0,
+  rgba(255, 255, 255, 0) 100%
+);
+
+// ==== shapes
+$standard-bord-rad: 0.2rem;

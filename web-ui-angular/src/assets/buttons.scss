@@ -1,0 +1,56 @@
+@import "./variables.scss";
+@import "./typography.scss";
+
+.posther-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.75rem;
+  padding: 0 8px;
+  border-radius: $standard-bord-rad;
+  transition: all 0.1s ease-out;
+  &:hover:not(.disabled) {
+    opacity: 0.7;
+  }
+  &.disabled:hover {
+    filter: saturate(0);
+    opacity: 0.7;
+    cursor: default;
+  }
+  cursor: pointer;
+
+  & > .material-icons {
+    margin-left: 4px;
+  }
+
+  &.large-btn {
+    padding: 0 24px;
+    @extend .text-lg;
+    height: 3rem;
+    & > .material-icons {
+      margin-left: 8px;
+    }
+  }
+}
+
+.standard-btn {
+  @extend .posther-btn;
+  background-color: $primary-col;
+  color: black;
+  &:not(.flat) {
+    box-shadow: 0px 1px 2px 0px hsl(215, 27%, 66%);
+  }
+}
+
+.secondary-btn {
+  @extend .posther-btn;
+}
+
+.action-btn {
+  @extend .posther-btn;
+  background-color: $secondary-col;
+  color: white;
+  &:not(.flat) {
+    box-shadow: 0px 1px 2px 0px hsl(325, 27%, 66%);
+  }
+}

@@ -1,91 +1,142 @@
 @import "../../assets/variables.scss";
+@import "../../assets/buttons.scss";
 
-$details-width: 290px;
+$left-col-width: 3rem;
+
 .card {
-  background-color: $poster-grey-2;
-  opacity: 0.8;
   display: block;
-  min-width: 500px;
-  list-style: none;
-  font-size: 0.8em;
+  width: 100%;
+  width: $card-width;
+  @extend .text-sm;
+  padding: 12px 12px 20px;
+
+  background-color: $posther-grey-2;
+  opacity: 0.8;
   color: black;
   border: 1px solid $primary-col;
-  border-radius: 0.2rem;
-  padding: 8px;
-  margin-bottom: 12px;
-
-  position: relative;
-  .read-link {
-    border-radius: 0.2rem;
-    padding: 6px 8px;
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.1s ease-in;
-    background-color: $primary-col;
-
-    &:visited {
-      color: currentColor;
-    }
-    &:hover {
-      background-color: $primary-hover-col;
-    }
-  }
+  border-radius: $standard-bord-rad;
 }
 
 .tx {
   display: flex;
   align-items: center;
-
   .tx-hash {
-    font-weight: bolder;
+    font-weight: 500;
+    font-family: $font-ibm-mono;
     color: $tx-col;
-    max-width: $details-width;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-right: 16px;
+  }
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  app-jazzicon {
+    margin-right: 6px;
+  }
+  .address {
+    // font-weight: 500;
+    font-family: $font-ibm-mono;
+  }
+}
+
+.mt-icon {
+  line-height: 1.5rem;
+  padding: 0 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+  &:hover {
+    background-color: $posther-grey-4;
   }
 
-  .tx-link {
-    margin-top: -3px;
-    a {
-      font-size: 0.8em;
-      text-decoration: none;
-      &:visited {
-        color: currentColor;
-      }
+  transform: translateY(-2px);
+
+  span {
+    transform: translateY(2px);
+    @extend .text-sm;
+  }
+
+  &::after {
+    position: absolute;
+    top: -150%;
+    left: 0;
+    content: "Copied";
+    background-color: $posther-grey-4;
+    color: black;
+    padding: 4px 8px;
+    height: fit-content;
+    width: fit-content;
+    border-radius: $standard-bord-rad;
+    font-size: $font-size-xs;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.2s ease-out;
+  }
+  &.used {
+    pointer-events: none;
+    position: relative;
+    &::after {
+      opacity: 1;
     }
   }
 }
 
-table tr td:first-child {
-  width: 80px;
+.link-icon {
+  margin-left: auto;
+  margin-right: 0.2rem;
+
+  a {
+    text-decoration: none;
+    color: currentColor;
+    &:visited {
+      color: currentColor;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  tr {
+    line-height: 2rem;
+    td:first-child {
+      width: $left-col-width;
+    }
+  }
 }
 
 .post-text {
-  font-family: Arial, Helvetica, sans-serif;
-  font-style: italic;
-  color: grey;
-  max-width: $details-width;
-  white-space: nowrap;
+  font-family: $font-ibm;
+  margin: 8px 8px 16px;
+  // padding: 4px 8px;
+  border-radius: $standard-bord-rad;
   overflow: hidden;
-  text-overflow: ellipsis;
-  margin-right: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  &::before {
+    content: '"';
+  }
+  &::after {
+    content: '"';
+  }
 }
 
-.copy {
-  font-size: 0.7em;
-  font-weight: bold;
-  background-color: aliceblue;
-  border-radius: 10px;
-  padding: 2px 4px;
-  transform: translateY(-1px);
-  cursor: pointer;
-  transition: all 0.1s ease-out;
-  &:hover {
-    background-color: $primary-col;
+.date {
+  font-family: $font-ibm-mono;
+}
+
+.read-link {
+  @extend .standard-btn;
+  text-decoration: none;
+  margin-left: auto;
+  width: 80px;
+
+  &:visited {
+    color: currentColor;
   }
+}
+
+hr {
+  border: none;
+  border-bottom: 0.5px solid $posther-grey-3;
 }

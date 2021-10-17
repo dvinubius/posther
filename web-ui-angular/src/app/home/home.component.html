@@ -1,35 +1,8 @@
-<h1>EthPoster</h1>
-<div class="new-post-btn" [routerLink]="['./poster']">Create Post</div>
-<ul>
-  <li>Post text on Ethereum</li>
-  <li>Persistence based on <strong>calldata</strong></li>
-  <li>No storage, no events. Low gas.</li>
-  <li>
-    Connect your Metamask to Ethereum <strong>{{ targetNetwork }}</strong>
-  </li>
-</ul>
-<hr />
-<div class="posts-header">
-  <h2>Posts</h2>
-  <div class="which-posts">
-    <app-toggle-button
-      [text]="'Only mine'"
-      (changed)="toggleMine()"
-      [on]="onlyMine"
-    ></app-toggle-button>
-  </div>
+<h1>Posth on Ethereum</h1>
+
+<div class="sub-title">
+  Posther is a low-fee solution to post text on the blockchain.
+  <br />Persistence is based on calldata. No storage, no events, low gas.
 </div>
-<ng-container
-  *ngIf="web3Svc.noContractError; then error; else posts"
-></ng-container>
 
-<ng-template #error>
-  <p class="error">{{ web3Svc.noContractError }}</p>
-</ng-template>
-
-<ng-template #posts>
-  <ng-container *ngIf="postTxs">
-    <p *ngIf="postTxs.length === 0">No posts yet</p>
-    <app-post-card *ngFor="let tx of postTxs" [tx]="tx"> </app-post-card>
-  </ng-container>
-</ng-template>
+<div class="action-btn large-btn" [routerLink]="['./post']">Posth</div>

@@ -1,8 +1,10 @@
 <ng-container *ngIf="show">
-  <ng-container *ngIf="pageError; then error; else post"></ng-container>
+  <ng-container
+    *ngIf="postsSvc.postNotFoundError; then error; else post"
+  ></ng-container>
 
   <ng-template #error>
-    <p class="error">{{ pageError }}</p>
+    <p class="error">{{ postsSvc.postNotFoundError }}</p>
   </ng-template>
 
   <ng-template #post>

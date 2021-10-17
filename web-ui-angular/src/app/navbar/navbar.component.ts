@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Web3Service, Web3Context } from '../web3.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { Web3ErrorService } from '../web3-error.service';
+import { shortenAddress } from '../utils';
+import { NavMenuService } from './nav-menu.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,19 +12,39 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  title = 'EthPoster';
+  title = 'Posther';
 
   web3Ctx$!: Observable<Web3Context>;
+  balance$!: Observable<string>;
 
-  get isInitialized() {
-    return this.web3Svc.isInitialized;
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.width = window.innerWidth;
+    if (!this.isSmallScreen) {
+      this.navMenuOpened = false;
+    }
+  }
+  width: number = window.innerWidth;
+  navMenuOpened = false;
+  get isSmallScreen() {
+    return this.width <= 972;
+  }
+  get showPages() {
+    return !this.isSmallScreen || this.navMenuOpened;
   }
 
-  constructor(private web3Svc: Web3Service) {}
+  constructor(
+    public web3Svc: Web3Service,
+    public errorSvc: Web3ErrorService,
+    private navMenuSvc: NavMenuService
+  ) {}
 
   ngOnInit(): void {
+    this.navMenuSvc.closeNavMenu$.subscribe(() => (this.navMenuOpened = false));
     this.web3Ctx$ = this.web3Svc.web3Context$;
-    // .pipe(tap((v) => console.log(v)));
+    this.balance$ = this.web3Svc.balance$.pipe(
+      map((b) => `${b?.toFixed(4)} ETH` ?? '')
+    );
   }
 
   networkName(ctx: Web3Context) {
@@ -29,12 +52,21 @@ export class NavbarComponent implements OnInit {
   }
 
   account(ctx: Web3Context) {
-    return ctx.signer ?? 'Connect Account';
+    return shortenAddress(ctx.signer ?? 'Connect Account');
   }
 
   connect(doConnect: boolean) {
     if (doConnect) {
       this.web3Svc.userConnectAccount();
     }
+  }
+
+  hideMetamaskWaitingError() {
+    this.errorSvc.acknowledgeMetamaskWaiting();
+  }
+
+  toggleNavMenuOpened(evt: Event) {
+    this.navMenuOpened = !this.navMenuOpened;
+    evt.stopPropagation();
   }
 }

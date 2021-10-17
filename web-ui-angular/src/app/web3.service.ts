@@ -9,16 +9,10 @@ import { ethers } from 'ethers';
 import { getContract } from './contract';
 import { environment } from 'src/environments/environment';
 import detectEthereumProvider from '@metamask/detect-provider';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, from } from 'rxjs';
 import * as evmChains from 'evm-chains';
-
-export enum Web3Error {
-  NO_DEFAULT_PROVIDER = 'Could not connect to Ethereum. Please connect a Metamask wallet',
-  NO_METAMASK = 'Could not find your wallet. Make sure you have Metamask installed.',
-  NO_ACCOUNT = 'Please connect to a Metamask account.',
-  WRONG_NETWORK_NO_CONTRACT = 'Make sure your Metamask is connected to the correct network.',
-  NO_POST = `Post not found. Make sure the transaction hash is correct.`,
-}
+import { Web3ErrorService, Web3Error } from './web3-error.service';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 
 export interface Web3Context {
   foundProvider: boolean;
@@ -48,33 +42,36 @@ export class Web3Service {
     foundContract: false,
   });
   public web3Context$: Observable<Web3Context>;
-
-  private _noDefaultProviderError: string = Web3Error.NO_DEFAULT_PROVIDER;
-  get noDefaultProviderError() {
-    return this._noDefaultProviderError;
+  get balance$(): Observable<number | undefined> {
+    return this.web3Context$.pipe(
+      switchMap(async (ctx) => {
+        if (!ctx.signer) return;
+        if (!this.provider) return;
+        const balanceBigNumber = await this.provider.getBalance(ctx.signer);
+        const num = ethers.utils.formatEther(balanceBigNumber.toString());
+        return +num;
+      })
+    );
   }
 
-  private _noMetamaskError: string = Web3Error.NO_METAMASK;
-  get noMetamaskError() {
-    return this._noMetamaskError;
+  get hasProvider() {
+    return !!this.provider;
   }
 
-  private _noSignerError: string = Web3Error.NO_ACCOUNT;
-  get noSignerError() {
-    return this._noSignerError;
+  get hasContract() {
+    return !!this.ethPoster;
   }
 
-  private _noContractError: string = Web3Error.WRONG_NETWORK_NO_CONTRACT;
-  get noContractError() {
-    return this._noContractError;
-  }
-
-  constructor(private ngZone: NgZone) {
+  constructor(private ngZone: NgZone, private errorSvc: Web3ErrorService) {
     this.web3Context$ = this._web3Context$.asObservable();
     this.init();
   }
 
   async init() {
+    this.errorSvc.noDefaultProviderError = Web3Error.NO_DEFAULT_PROVIDER;
+    this.errorSvc.noMetamaskError = Web3Error.NO_METAMASK;
+    this.errorSvc.noSignerError = Web3Error.NO_ACCOUNT;
+    this.errorSvc.noContractError = Web3Error.WRONG_NETWORK_NO_CONTRACT;
     await this.initDefaultProvider();
     await this.initInjectedProvider();
     this.isInitialized = true;
@@ -88,7 +85,7 @@ export class Web3Service {
       this.defaultProvider
         .getNetwork()
         .then((v) => console.log('Found default network'));
-      this._noDefaultProviderError = '';
+      this.errorSvc.noDefaultProviderError = '';
       this._web3Context$.next({
         ...this._web3Context$.value,
         foundProvider: true,
@@ -115,7 +112,7 @@ export class Web3Service {
     }
 
     // We have a provider
-    this._noMetamaskError = '';
+    this.errorSvc.noMetamaskError = '';
     this.injectedProvider = new ethers.providers.Web3Provider(
       ethereum as ExternalProvider,
       'any' // this is needed in order for network change to be supported
@@ -163,6 +160,9 @@ export class Web3Service {
         }
         const signerAddress = accounts[0];
         console.log('ACCOUNT CHANGED: ', signerAddress);
+        if (!signerAddress) {
+          this.errorSvc.noSignerError = Web3Error.NO_ACCOUNT;
+        }
         this.signer = signerAddress;
         this._web3Context$.next({
           ...this._web3Context$.value,
@@ -207,7 +207,9 @@ export class Web3Service {
           console.error(
             'User did not approve exposing their metamask accounts'
           );
-          this._noSignerError = Web3Error.NO_ACCOUNT;
+          this.errorSvc.noSignerError = Web3Error.NO_ACCOUNT;
+        } else if (e.code === -32002) {
+          this.errorSvc.metamaskWaitingError = Web3Error.METAMASK_WAITING;
         } else {
           console.error(e);
         }
@@ -220,7 +222,7 @@ export class Web3Service {
     }
     this.signer = signer;
     console.log('Signer: ', signer);
-    this._noSignerError = '';
+    this.errorSvc.noSignerError = '';
     this._web3Context$.next({
       ...this._web3Context$.value,
       signer: signer,
@@ -237,7 +239,7 @@ export class Web3Service {
     const network = await ethersProvider.getNetwork();
     const targetNetworkId = environment.chainId;
     if (network.chainId !== targetNetworkId) {
-      this._noContractError = `${Web3Error.WRONG_NETWORK_NO_CONTRACT} (${environment.contractNetwork})`;
+      this.errorSvc.noContractError = Web3Error.WRONG_NETWORK_NO_CONTRACT;
       return false;
     }
     console.log(
@@ -253,13 +255,13 @@ export class Web3Service {
     if (!this.ethPoster || !this.deploymentBlockNo) {
       const network = environment.contractNetwork;
       console.error(`Contract not found on ${network}`);
-      this._noContractError = `${Web3Error.WRONG_NETWORK_NO_CONTRACT} (${network})`;
+      this.errorSvc.noContractError = Web3Error.WRONG_NETWORK_NO_CONTRACT;
       return false;
     }
 
     console.log('Contract: ');
     console.log(this.ethPoster);
-    this._noContractError = '';
+    this.errorSvc.noContractError = '';
     this._web3Context$.next({
       ...this._web3Context$.value,
       foundContract: true,
