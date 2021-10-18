@@ -5,7 +5,7 @@
 :host {
   display: flex;
   --wid: calc(2 * #{$card-width} + #{$cards-gutter});
-  padding: 2rem $page-lateral-padding 0;
+  padding: $page-top-pad $page-lateral-pad 0;
   flex-grow: 1;
   flex-direction: column;
   height: 100%;
@@ -41,12 +41,10 @@
   justify-content: center;
   flex-grow: 1;
   overflow-y: auto;
-  width: calc(
-    2 * #{$card-width} + #{$cards-gutter} + 2 * #{$page-lateral-padding}
-  );
+  width: calc(2 * #{$card-width} + #{$cards-gutter} + 2 * #{$page-lateral-pad});
   padding-bottom: 1.5rem;
   box-sizing: content-box;
-  margin-left: calc((100vw - var(--wid) - 2 * #{$page-lateral-padding}) / 2);
+  margin-left: calc((100vw - var(--wid) - 2 * #{$page-lateral-pad}) / 2);
   align-self: flex-start;
   justify-content: flex-start;
   & > * {

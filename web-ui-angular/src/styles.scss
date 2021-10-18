@@ -4,6 +4,15 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap");
 @import "@material-design-icons/font";
 
+:root {
+  --resp-post-width: #{$post-width};
+}
+@media screen and (max-width: calc(#{$post-width} + 2 * #{$page-lateral-pad})) {
+  :root {
+    --resp-post-width: 100%;
+  }
+}
+
 body,
 html {
   margin: 0;

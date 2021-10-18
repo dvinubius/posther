@@ -1,11 +1,6 @@
-<h1>Your Message</h1>
+<h2 class="title text-h2">Your Message</h2>
 <div class="form">
-  <textarea
-    cols="50"
-    rows="20"
-    [maxlength]="maxPostLength"
-    [(ngModel)]="inputText"
-  ></textarea>
+  <textarea [maxlength]="maxPostLength" [(ngModel)]="inputText"></textarea>
   <div class="action-btn" (click)="post()" [class.disabled]="!!cannotPostError">
     Post
   </div>

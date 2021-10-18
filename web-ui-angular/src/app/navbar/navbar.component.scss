@@ -2,8 +2,8 @@
 @import "../../assets/typography.scss";
 
 $nav-item-border: 1px solid $primary-col;
-$nav-item-width: 150px;
-$nav-item-width-uncollapsed: 62px;
+$nav-item-width: 9.375rem;
+$nav-item-width-uncollapsed: 3.875rem;
 
 :host {
   position: relative;
@@ -13,10 +13,10 @@ $nav-item-width-uncollapsed: 62px;
 }
 
 .navbar {
-  --gutter: 24px;
-  --semi-gutter: 12px;
+  --gutter: 1.5rem;
+  --semi-gutter: 0.75rem;
   height: $navbar-height;
-  padding: 0 16px;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,8 +29,8 @@ $nav-item-width-uncollapsed: 62px;
 }
 @media screen and (max-width: $breakpoint-md) {
   .navbar {
-    --gutter: 12px;
-    --semi-gutter: 8px;
+    --gutter: 0.75rem;
+    --semi-gutter: 0.5rem;
   }
 }
 
@@ -38,16 +38,16 @@ $nav-item-width-uncollapsed: 62px;
   display: flex;
   align-items: center;
   .logo {
-    height: 40px;
-    width: 20px;
-    margin-right: 16px;
+    height: 2.5rem;
+    width: 1.25rem;
+    margin-right: 1rem;
     background: url(/assets/logo.png) center no-repeat;
     background-size: cover;
     cursor: pointer;
   }
   .title {
     font-family: $font-courier;
-    font-size: 1.3em;
+    font-size: 1.3125rem;
     font-weight: bold;
     cursor: pointer;
     align-self: stretch;
@@ -152,7 +152,7 @@ $nav-item-width-uncollapsed: 62px;
     left: calc(#{$navbar-height} * -1 - 2px - var(--gutter));
     li {
       margin: 0;
-      width: 120px;
+      width: 7.5rem;
       height: $navbar-height;
       border: $nav-item-border;
       &:not(:first-child) {
@@ -178,13 +178,13 @@ $nav-item-width-uncollapsed: 62px;
     position: absolute;
     border-left: 1px solid $primary-col;
     border-right: 1px solid $primary-col;
-    width: 20px;
+    width: 1.25rem;
     height: var(--bridge-length);
-    max-height: 0px;
+    max-height: 0;
     z-index: 10000;
     content: " ";
-    top: 0px;
-    left: 10px;
+    top: 0;
+    left: 0.625rem;
     transition: max-height 0.3s ease-out;
   }
 
@@ -195,7 +195,7 @@ $nav-item-width-uncollapsed: 62px;
     ul {
       padding-top: var(--bridge-length);
       background-color: transparent;
-      max-height: 600px;
+      max-height: 38rem;
     }
   }
 }
@@ -216,7 +216,7 @@ $nav-item-width-uncollapsed: 62px;
 .network {
   border-color: $primary-col;
   font-family: $font-ibm;
-  min-width: 120px;
+  min-width: 7.5rem;
   margin-right: var(--semi-gutter);
 }
 
@@ -225,11 +225,11 @@ $nav-item-width-uncollapsed: 62px;
   border-left: 1px solid var(--border-col);
   border-top: 1px solid var(--border-col);
   border-bottom: 1px solid var(--border-col);
-  font-size: 0.85em;
+  font-size: 0.85rem;
   font-family: $font-ibm-mono;
   background-color: white;
   color: $secondary-col;
-  padding: 3px 6px;
+  padding: 0.1875rem 0.375rem;
   width: fit-content;
   white-space: nowrap;
 }
@@ -241,7 +241,7 @@ $nav-item-width-uncollapsed: 62px;
   align-items: center;
 
   app-jazzicon {
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 
   &.no-connection {
@@ -268,12 +268,12 @@ $nav-item-width-uncollapsed: 62px;
   font-size: 0.9em;
 
   p {
-    margin: 6px 0;
+    margin: 0.375rem 0;
   }
 }
 
 .ok-error-snack {
-  margin-top: 2px;
+  margin-top: 0.125rem;
   align-items: center;
   padding: 0;
 
@@ -288,7 +288,7 @@ $nav-item-width-uncollapsed: 62px;
     cursor: pointer;
     transition: all 0.1s ease-out;
     font-weight: bold;
-    padding: 2px 8px;
+    padding: 0.125rem 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;

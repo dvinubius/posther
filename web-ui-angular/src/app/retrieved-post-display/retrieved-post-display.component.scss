@@ -3,14 +3,8 @@
 @import "../../assets/buttons.scss";
 
 :host {
-  width: $readable-post-width;
+  width: var(--resp-post-width);
   display: flex;
   flex-direction: column;
   align-items: stretch;
-}
-
-@media screen and (max-width: calc(#{$readable-post-width} + 2 * #{$page-lateral-padding})) {
-  :host {
-    width: 100%;
-  }
 }

@@ -8,7 +8,7 @@ $left-col-width: 3rem;
   width: 100%;
   width: $card-width;
   @extend .text-sm;
-  padding: 12px 12px 20px;
+  padding: 0.75rem 0.75rem 1.25rem;
 
   background-color: $posther-grey-2;
   opacity: 0.8;
@@ -29,8 +29,7 @@ table {
 
 .post-text {
   font-family: $font-ibm;
-  margin: 8px 8px 16px;
-  // padding: 4px 8px;
+  margin: 0.5rem 0.5rem 1rem;
   border-radius: $standard-bord-rad;
   overflow: hidden;
   display: -webkit-box;
@@ -52,7 +51,7 @@ table {
   @extend .standard-btn;
   text-decoration: none;
   margin-left: auto;
-  width: 80px;
+  width: 5rem;
 
   &:visited {
     color: currentColor;

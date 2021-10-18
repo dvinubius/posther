@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   height: 1.75rem;
-  padding: 0 8px;
+  padding: 0 0.5rem;
   border-radius: $standard-bord-rad;
   transition: all 0.1s ease-out;
   cursor: pointer;
@@ -21,15 +21,15 @@
   }
 
   & > .material-icons {
-    margin-left: 4px;
+    margin-left: 0.25rem;
   }
 
   &.large-btn {
-    padding: 0 24px;
+    padding: 0 1.5rem;
     @extend .text-lg;
     height: 3rem;
     & > .material-icons {
-      margin-left: 8px;
+      margin-left: 0.5rem;
     }
   }
 }

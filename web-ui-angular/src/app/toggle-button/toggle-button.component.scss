@@ -30,7 +30,7 @@ input[type="checkbox"] {
   left: $padding;
   width: calc(#{$height} - 2 * #{$padding});
   height: calc(#{$height} - 2 * #{$padding});
-  background-color: #fff;
+  background-color: white;
   border-radius: 100%;
   cursor: pointer;
   z-index: 100;
