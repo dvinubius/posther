@@ -1,0 +1,23 @@
+<div class="inputter">
+  <h2 class="title text-h2">View Posth</h2>
+  <form class="hash-form">
+    <input
+      type="text"
+      name="hash"
+      class="hash"
+      [(ngModel)]="inputTxHash"
+      placeholder="Enter the transaction ID "
+      [disabled]="!canRetrieve"
+    />
+    <div class="submit-btn" (click)="submit()" [class.disabled]="!canRetrieve">
+      View
+    </div>
+  </form>
+</div>
+<div class="read-scroller">
+  <app-retrieved-post-display
+    *ngIf="hasSubmitted"
+    [post]="retrievedPost"
+    [notFoundError]="postsSvc.postNotFoundError"
+  ></app-retrieved-post-display>
+</div>

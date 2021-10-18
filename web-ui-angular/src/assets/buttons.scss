@@ -9,15 +9,16 @@
   padding: 0 8px;
   border-radius: $standard-bord-rad;
   transition: all 0.1s ease-out;
+  cursor: pointer;
+
   &:hover:not(.disabled) {
     opacity: 0.7;
   }
-  &.disabled:hover {
+  &.disabled {
     filter: saturate(0);
     opacity: 0.7;
     cursor: default;
   }
-  cursor: pointer;
 
   & > .material-icons {
     margin-left: 4px;

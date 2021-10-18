@@ -3,24 +3,7 @@
     <tr>
       <td>Tx:</td>
       <td>
-        <div class="tx">
-          <div class="tx-hash">{{ hash }}</div>
-          <div class="mt-icon link-icon">
-            <a [href]="txLink" target="_blank" title="View On Etherscan"
-              ><span class="material-icons">link</span></a
-            >
-          </div>
-          <div
-            class="mt-icon copy-icon"
-            [class.used]="usedTxHashCopy"
-            ngxClipboard
-            [cbContent]="tx.txHash"
-            title="Copy Hash"
-            (click)="copiedTxHash()"
-          >
-            <span class="material-icons">{{ copyIconKeyTxHash }}</span>
-          </div>
-        </div>
+        <app-explorable-hash [hash]="tx.txHash"></app-explorable-hash>
       </td>
     </tr>
     <tr>
@@ -30,32 +13,7 @@
     <tr>
       <td>From:</td>
       <td>
-        <div class="author">
-          <app-jazzicon
-            [seed]="author"
-            [size]="18"
-            [wrapped]="true"
-          ></app-jazzicon>
-          <div class="address">{{ author }}</div>
-          <div class="mt-icon link-icon">
-            <a
-              [href]="authorLink"
-              target="_blank"
-              title="View Author On Etherscan"
-              ><span class="material-icons">link</span></a
-            >
-          </div>
-          <div
-            class="mt-icon copy-icon"
-            ngxClipboard
-            [cbContent]="tx.author"
-            title="Copy Address"
-            [class.used]="usedAuthorAddressCopy"
-            (click)="copiedAuthor()"
-          >
-            <span class="material-icons">{{ copyIconKeyAuthor }}</span>
-          </div>
-        </div>
+        <app-explorable-hash [hash]="tx.author"></app-explorable-hash>
       </td>
     </tr>
   </table>

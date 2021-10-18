@@ -20,7 +20,7 @@ export class ExplorerComponent implements OnInit {
 
   onlyMine = false;
 
-  howMany = 7;
+  howMany = 10;
 
   constructor(
     public web3Svc: Web3Service,

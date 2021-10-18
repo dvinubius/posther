@@ -8,7 +8,7 @@
 }
 
 .scroller {
-  height: 100%;
+  height: calc(100% - #{$navbar-height});
   overflow-y: auto;
 
   ::after {

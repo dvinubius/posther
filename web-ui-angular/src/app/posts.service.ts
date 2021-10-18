@@ -99,6 +99,10 @@ export class PostsService {
     return parsedPostTxs;
   }
 
+  resetPostRetrievalError() {
+    this._postNotFoundError = '';
+  }
+
   async getPostFromTx(txHash: string): Promise<Post | undefined> {
     if (!this.web3Svc.injectedProvider) {
       console.error(Web3Error.NO_METAMASK);

@@ -1,11 +1,9 @@
 <app-navbar></app-navbar>
 
 <div class="scroller">
-  <div class="content" *ngIf="web3Svc.isInitialized">
-    <ng-container *ngIf="web3Svc.hasProvider">
-      <router-outlet></router-outlet>
-    </ng-container>
-  </div>
+  <ng-container *ngIf="web3Svc.isInitialized && web3Svc.hasProvider">
+    <router-outlet></router-outlet>
+  </ng-container>
 </div>
 <div class="poc">proof of concept</div>
 <div class="bg-gradient"></div>

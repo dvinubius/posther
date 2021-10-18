@@ -1,0 +1,9 @@
+<div class="post-text">
+  <p *ngFor="let p of paragraphs">
+    {{ p }}
+  </p>
+</div>
+<div class="author">
+  <app-explorable-hash [hash]="authorAddress"></app-explorable-hash>
+</div>
+<div class="date">{{ date }}</div>

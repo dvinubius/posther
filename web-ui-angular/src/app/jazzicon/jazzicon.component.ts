@@ -39,13 +39,13 @@ export class JazziconComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     let seedInteger = this.seed;
     if (typeof this.seed === 'string') {
-      seedInteger = JazziconComponent.jsNumberForAddress(this.seed);
+      seedInteger = this.jsNumberForAddress(this.seed);
     }
     const value = jazzicon(this.size, seedInteger);
     this.renderer.appendChild(this.jazziconElement.nativeElement, value);
   }
 
-  private static jsNumberForAddress(address: string) {
+  private jsNumberForAddress(address: string) {
     const addr = address.toLowerCase().slice(2, 10);
     return parseInt(addr, 16);
   }

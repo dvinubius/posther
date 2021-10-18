@@ -18,7 +18,7 @@
       <ul>
         <li [routerLink]="['/']">Home</li>
         <li [routerLink]="['/explorer', '']">Explore</li>
-        <li [routerLink]="['/read', '']">View</li>
+        <li [routerLink]="['/retrieve']">View</li>
         <li [routerLink]="['/post']">Posth</li>
       </ul>
     </div>
@@ -35,7 +35,7 @@
       [class.no-connection]="!ctx.signer"
       (click)="connect(!ctx.signer)"
     >
-      <app-jazzicon [seed]="account(ctx)" [size]="18"></app-jazzicon>
+      <app-jazzicon [seed]="ctx.signer || ''" [size]="18"></app-jazzicon>
       {{ account(ctx) }}
     </div>
   </div>

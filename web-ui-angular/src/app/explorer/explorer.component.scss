@@ -3,15 +3,13 @@
 @import "../../assets/typography.scss";
 
 :host {
-  display: block;
-  --pad: 24px;
+  display: flex;
   --wid: calc(2 * #{$card-width} + #{$cards-gutter});
-  box-sizing: content-box;
-  padding: var(--pad);
-  max-width: var(--wid);
-  margin-left: calc((100vw - var(--wid) - 2 * var(--pad)) / 2);
+  padding: 2rem $page-lateral-padding 0;
   flex-grow: 1;
-  margin-bottom: 40px;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
 }
 
 .posts-header {
@@ -19,11 +17,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 
   .title {
+    margin: 0 $cards-gutter 0 0;
     @extend .text-h2;
     width: $card-width;
-    margin-right: $cards-gutter;
   }
 }
 
@@ -40,11 +39,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  // height: 100%;
-  // overflow: scroll;
-  // flex-grow: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+  width: calc(
+    2 * #{$card-width} + #{$cards-gutter} + 2 * #{$page-lateral-padding}
+  );
+  padding-bottom: 1.5rem;
+  box-sizing: content-box;
+  margin-left: calc((100vw - var(--wid) - 2 * #{$page-lateral-padding}) / 2);
+  align-self: flex-start;
+  justify-content: flex-start;
   & > * {
-    margin-bottom: $cards-gutter;
+    &:not(:last-child) {
+      margin-bottom: $cards-gutter;
+    }
     &:nth-child(odd) {
       margin-right: $cards-gutter;
     }

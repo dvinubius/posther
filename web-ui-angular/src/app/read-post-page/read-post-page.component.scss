@@ -1,0 +1,10 @@
+@import "../../assets/variables.scss";
+
+:host {
+  padding: 0 $page-lateral-padding;
+  margin: 10rem auto 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}

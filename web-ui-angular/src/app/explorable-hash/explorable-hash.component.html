@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <app-jazzicon
+    *ngIf="hash.length !== TX_ID_LENGTH"
+    [seed]="hash"
+    [size]="18"
+    [wrapped]="true"
+  ></app-jazzicon>
+  <div class="hash" [class.tx]="hash.length === TX_ID_LENGTH">
+    {{ shortHash }}
+  </div>
+  <div class="mt-icon link-icon">
+    <a [href]="hashLink" target="_blank" title="View Author On Etherscan"
+      ><span class="material-icons">link</span></a
+    >
+  </div>
+  <div
+    class="mt-icon copy-icon"
+    ngxClipboard
+    [cbContent]="hash"
+    title="Copy Address"
+    [class.used]="usedCopy"
+    (click)="copiedHash()"
+  >
+    <span class="material-icons">{{ copyIconKey }}</span>
+  </div>
+</div>
