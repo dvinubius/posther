@@ -13,10 +13,11 @@ $font-size-xl: 1.25rem;
 // ==== layout
 
 $breakpoint-md: 60rem;
+$breakpoint-sm: 42rem;
 $navbar-height: 3rem;
 $card-width: 18.75rem;
 $cards-gutter: 1.5rem;
-$page-lateral-pad: 1rem;
+$page-lateral-pad: 1.5rem;
 $page-top-pad-lg: 5rem;
 $page-top-pad: 2rem;
 $post-width: 37.5rem;
@@ -54,7 +55,11 @@ $posther-grey-5: hsl(0, 0%, 94%);
 
 $posther-grey-6: hsl(0, 0%, 97%);
 
+$posther-grey-borders-light: $posther-grey-4;
+$posther-grey-borders-strong: $posther-grey-3;
+
 $posther-black: hsl(0, 0%, 6%);
+$posther-black-2: hsl(0, 0%, 50%);
 
 $main-gradient: radial-gradient(
   50% 50% at 50% 50%,

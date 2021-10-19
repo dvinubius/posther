@@ -13,7 +13,7 @@ $left-col-width: 3rem;
   background-color: $posther-grey-2;
   opacity: 0.8;
   color: black;
-  border: 1px solid $primary-col;
+  border: 1px solid $posther-grey-borders-strong;
   border-radius: $standard-bord-rad;
 }
 
@@ -27,10 +27,14 @@ table {
   }
 }
 
+.post-text-wrapper {
+  height: 3rem;
+  margin: 1rem 0.05rem 1rem;
+}
+
 .post-text {
   font-family: $font-ibm;
-  margin: 0.5rem 0.5rem 1rem;
-  border-radius: $standard-bord-rad;
+  line-height: 1.5rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;

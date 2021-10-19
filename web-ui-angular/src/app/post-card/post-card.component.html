@@ -18,6 +18,8 @@
     </tr>
   </table>
   <hr />
-  <div class="post-text">{{ tx.text }}</div>
+  <div class="post-text-wrapper">
+    <div class="post-text">{{ tx.text }}</div>
+  </div>
   <a [routerLink]="['/read', tx.txHash]" class="read-link">View </a>
 </div>

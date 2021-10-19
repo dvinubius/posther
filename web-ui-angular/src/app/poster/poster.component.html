@@ -2,7 +2,7 @@
 <div class="form">
   <textarea [maxlength]="maxPostLength" [(ngModel)]="inputText"></textarea>
   <div class="action-btn" (click)="post()" [class.disabled]="!!cannotPostError">
-    Post
+    Posth
   </div>
   <div class="status" [class.error]="hasTxError">{{ txStatus }}</div>
 </div>

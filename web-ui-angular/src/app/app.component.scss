@@ -18,7 +18,6 @@
     top: 0;
     width: 100%;
     height: 100%;
-    // background: url(/assets/ethereum.png) center 35% no-repeat;
     z-index: -1;
     opacity: 0.3;
   }
@@ -38,19 +37,6 @@
   padding: 0.1875rem 2.375rem;
 }
 
-// .bg-gradient {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   pointer-events: none;
-//   width: 200vw;
-//   height: 200vh;
-//   background: $main-gradient;
-//   transform: translate(-50vw, -100vh);
-//   z-index: -1;
-// }
-
 .bg-gradient {
   position: fixed;
   top: 0;
@@ -59,14 +45,12 @@
   pointer-events: none;
   width: 100vw;
   height: 100vh;
-  // transform: translate(-150vw);
-
   z-index: -1;
-
-  // background-color: #ffdee9;
-  filter: opacity(0.081) saturate(0.5);
-  background-image: -webkit-linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
-  background-image: -moz-linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
-  background-image: -o-linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
-  background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+  filter: opacity(0.061) saturate(0.5);
+  $col1: #ffdee9;
+  $col2: #b5fffc;
+  background-image: -webkit-linear-gradient(0deg, $col1 0%, $col2 100%);
+  background-image: -moz-linear-gradient(0deg, $col1 0%, $col2 100%);
+  background-image: -o-linear-gradient(0deg, $col1 0%, $col2 100%);
+  background-image: linear-gradient(0deg, $col1 0%, $col2 100%);
 }

@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   width: number = window.innerWidth;
   navMenuOpened = false;
   get isSmallScreen() {
-    return this.width <= 972;
+    return this.width <= 60 * 16;
   }
   get showPages() {
     return !this.isSmallScreen || this.navMenuOpened;

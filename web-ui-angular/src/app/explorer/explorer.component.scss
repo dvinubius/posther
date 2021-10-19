@@ -59,3 +59,40 @@
     }
   }
 }
+
+@media screen and (max-width: $breakpoint-sm) {
+  :host {
+    align-items: stretch;
+  }
+
+  .posts-header {
+    width: 100%;
+    justify-content: space-between;
+    .title {
+      width: fit-content;
+    }
+    .which-posts {
+      width: fit-content;
+      align-self: flex-end;
+      app-toggle-button {
+        margin-right: auto;
+      }
+    }
+  }
+  .cards {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-left: 0;
+    & > * {
+      ::ng-deep .card {
+        width: 100%;
+      }
+      margin: 0 0 $cards-gutter 0 !important;
+      &:last-child {
+        margin: 0 !important;
+      }
+    }
+  }
+}

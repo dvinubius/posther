@@ -1,7 +1,9 @@
 <div class="navbar" *ngIf="web3Svc.isInitialized">
   <div class="title-and-page-links" [class.small-screen]="isSmallScreen">
     <div class="logo" [routerLink]="['/']"></div>
-    <div class="title" [routerLink]="['/']">{{ title }}</div>
+    <div class="title" [routerLink]="['/']" *ngIf="!isSmallScreen">
+      {{ title }}
+    </div>
     <div
       class="menu-icon"
       [class.opened]="navMenuOpened"
