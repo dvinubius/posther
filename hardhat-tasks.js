@@ -63,16 +63,16 @@ module.exports = () => {
       console.log("TX mined: ", tx.hash);
     });
 
+  const { lipsumParagraphs } = require("./scripts/utils");
   task(
     "do-post-ten-signers",
     "Posts given text ten times, with different accounts"
   ).setAction(async (taskArgs, hre) => {
     const ethPoster = await getDeployment(hre, "EthPoster");
-    const baseText = "This is a test of the post functionality - no. ";
     const fee = await ethPoster.fee();
     const signers = (await hre.ethers.getSigners()).slice(0, 10);
-    const postings = signers.map(async (signer, idx) => {
-      const text = `${baseText}${idx}`;
+    const postings = signers.map(async (signer) => {
+      const text = lipsumParagraphs(7);
       const tx = await ethPoster.connect(signer).post(text, {
         value: fee,
       });

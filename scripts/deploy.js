@@ -10,16 +10,17 @@ module.exports = async function main(hre) {
   const ethPoster = await EthPoster.deploy(
     hre.ethers.utils.parseUnits(hre.network.config.fee)
   );
-  const ctrct = await ethPoster.deployed();
-  const { creates, hash, blockNumber, chainId } = ctrct.deployTransaction;
+  const chainId = ethPoster.deployTransaction.chainId;
+  const receipt = await ethPoster.deployTransaction.wait();
+  const { contractAddress, transactionHash, blockNumber } = receipt;
 
   console.log("EthPoster deployed to:", colAddrContract(ethPoster.address));
   console.log("Owner is ", colAddrEOA(await ethPoster.owner()));
   logDeployment(hre.network.name, "EthPoster", [
     chainId,
-    creates,
+    contractAddress,
     blockNumber,
-    hash,
+    transactionHash,
   ]);
 };
 

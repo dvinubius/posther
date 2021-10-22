@@ -17,6 +17,8 @@ import { PostComponent } from './post/post.component';
 import { ReadPostPageComponent } from './read-post-page/read-post-page.component';
 import { ExplorableHashComponent } from './explorable-hash/explorable-hash.component';
 import { RetrievedPostDisplayComponent } from './retrieved-post-display/retrieved-post-display.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,14 @@ import { RetrievedPostDisplayComponent } from './retrieved-post-display/retrieve
     ExplorableHashComponent,
     RetrievedPostDisplayComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ClipboardModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ClipboardModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

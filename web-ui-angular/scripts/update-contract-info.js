@@ -14,7 +14,7 @@ module.exports = (
   );
   lines[blockNoLineIdx] = `deploymentBlockNo: ${deploymentBlockNo},`;
   const providerIdx = lines.findIndex((l) => l.includes("defaultProviderUrl"));
-  lines[providerIdx] = `defaultProviderUrl: "${defaultProviderUrl}"`;
+  lines[providerIdx] = `defaultProviderUrl: "${defaultProviderUrl}",`;
   const newEnvAsText = lines.join("\n");
   fs.writeFileSync(filePath, newEnvAsText, { flag: "w" }, () => {});
 };
