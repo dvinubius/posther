@@ -1,0 +1,51 @@
+@import "./variables.scss";
+
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%),
+  $radius: 20px
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: $radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: $radius;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // for firefox
+  scrollbar-color: $foreground-color $background-color;
+  @if $size == 0 {
+    scrollbar-width: 0;
+  } @else if $size < 8 {
+    scrollbar-width: thin;
+  } @else {
+    scrollbar-width: auto;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+.scrollbar-thin {
+  @include scrollbars(8px, $posther-grey-4, $posther-grey-6);
+}
+
+.scrollbar-thin-darker {
+  @include scrollbars(8px, $posther-grey-7, $posther-grey-6);
+}

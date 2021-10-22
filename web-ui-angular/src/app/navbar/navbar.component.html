@@ -18,10 +18,34 @@
     </div>
     <div class="page-links" [class.visible]="navMenuOpened">
       <ul>
-        <li [routerLink]="['/']">Home</li>
-        <li [routerLink]="['/explorer', '']">Explore</li>
-        <li [routerLink]="['/retrieve']">View</li>
-        <li [routerLink]="['/post']">Posth</li>
+        <li
+          [routerLink]="['/']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home
+        </li>
+        <li
+          [routerLink]="['/explorer', '']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Explore
+        </li>
+        <li
+          [routerLink]="['/retrieve']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          View
+        </li>
+        <li
+          [routerLink]="['/post']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Posth
+        </li>
       </ul>
     </div>
   </div>

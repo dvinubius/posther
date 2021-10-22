@@ -39,6 +39,9 @@ $menu-icon-size: 2rem;
 }
 
 .title-and-page-links {
+  * {
+    user-select: none;
+  }
   display: flex;
   align-items: center;
   .logo {
@@ -83,7 +86,7 @@ $menu-icon-size: 2rem;
   }
 }
 
-// hover fx
+// hover fx and active routes
 .title-and-page-links:not(.small-screen) .page-links ul li {
   position: relative;
   &::after {
@@ -114,6 +117,10 @@ $menu-icon-size: 2rem;
       border-bottom-color: $posther-black;
       border-radius: $standard-bord-rad;
     }
+  }
+
+  &.active {
+    color: black;
   }
 }
 
@@ -186,8 +193,9 @@ $menu-icon-size: 2rem;
         border-top: none;
       }
       &:hover {
-        background-color: $posther-grey-6;
+        // background-color: $posther-grey-6;
         opacity: 1;
+        color: black;
       }
     }
   }

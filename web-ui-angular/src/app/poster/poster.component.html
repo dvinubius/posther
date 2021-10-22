@@ -1,10 +1,16 @@
-<h2 class="title text-h2">Your Message</h2>
+<h2 class="title text-h2">Write a Posth</h2>
 <div class="form">
-  <textarea [maxlength]="maxPostLength" [(ngModel)]="inputText"></textarea>
-  <div class="action-btn" (click)="post()" [class.disabled]="!!cannotPostError">
-    Posth
+  <textarea
+    [maxlength]="maxPostLength"
+    [(ngModel)]="inputText"
+    [disabled]="disableInput"
+  ></textarea>
+  <div class="action-btn" (click)="post()" [class.disabled]="disableInput">
+    Publish
   </div>
-  <div class="status" [class.error]="hasTxError">{{ txStatus }}</div>
+  <div class="status" [class.error]="hasTxError" [class.visible]="disableInput">
+    {{ txStatus }}
+  </div>
 </div>
 <div *ngIf="cannotPostError" class="error cannot-post">
   {{ cannotPostError }}

@@ -20,6 +20,15 @@ export class PosterComponent implements OnInit {
   maxPostLength = environment.maxPostLength;
   inputText = '';
   txStatus: TxStatusText | '' = '';
+  get disableInput(): boolean {
+    return (
+      [
+        TxStatusText.PENDING,
+        TxStatusText.SUCCESS,
+        TxStatusText.FAILED,
+      ].includes(this.txStatus as any) || !!this.cannotPostError
+    );
+  }
 
   get cannotPostError() {
     return this.errorSvc.noMetamaskError || this.errorSvc.noSignerError;

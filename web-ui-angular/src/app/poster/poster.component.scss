@@ -24,17 +24,22 @@
 
   textarea {
     margin-bottom: 2rem;
-    background-color: transparent;
+    background-color: white;
     resize: vertical;
     width: 100%;
     height: 30rem;
-    font-size: 1rem;
-    border-color: $posther-grey-borders-strong;
-    border-radius: $standard-bord-rad;
+    @extend .text-lg;
+    font-family: $font-ibm;
+    border-color: $posther-grey-borders-light;
+    border-radius: calc(2 * #{$standard-bord-rad});
     opacity: 0.8;
     padding: 0.75rem;
     &:focus {
       outline: none;
+    }
+    &:disabled {
+      border-color: transparent;
+      background: transparent;
     }
   }
 
@@ -43,9 +48,27 @@
     height: 2.5rem;
     align-self: flex-end;
   }
+}
 
+.form {
+  position: relative;
   .status {
-    margin-top: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: $standard-bord-rad;
+    background-color: $posther-grey-5;
+    display: none;
+
+    &.visible {
+      display: block;
+    }
   }
 }
 
