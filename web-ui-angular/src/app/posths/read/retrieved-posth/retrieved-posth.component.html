@@ -1,0 +1,14 @@
+<ng-container *ngIf="notFoundError; then error; else postPart"></ng-container>
+
+<ng-template #error>
+  <p class="error">{{ notFoundError }}</p>
+</ng-template>
+
+<ng-template #postPart>
+  <app-readable-posth
+    *ngIf="post"
+    [authorAddress]="postAuthor"
+    [date]="postDate"
+    [paragraphs]="postParagraphs"
+  ></app-readable-posth>
+</ng-template>

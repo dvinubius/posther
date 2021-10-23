@@ -1,0 +1,34 @@
+@import "../../../../assets/typography.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.post-text {
+  margin-bottom: 3rem;
+  width: 100%;
+  @extend .text-lg;
+  color: $posther-black;
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  p {
+    text-align: justify;
+  }
+}
+
+.date,
+.author {
+  margin-left: auto;
+  font-size: 0.8em;
+}
+
+.date {
+  margin-top: 0.5rem;
+  font-family: $font-ibm-mono;
+  transform: translateX(-0.3rem);
+}

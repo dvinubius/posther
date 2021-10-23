@@ -1,0 +1,14 @@
+<div class="posts-header">
+  <h2 class="title">Explore Posths</h2>
+  <div class="which-posts">
+    <app-toggle-button
+      [text]="'Only mine'"
+      (changed)="toggleMine()"
+      [on]="onlyMine"
+    ></app-toggle-button>
+  </div>
+</div>
+<div class="cards" *ngIf="web3Svc.hasContract && !!postTxs">
+  <p *ngIf="postTxs.length === 0">No posts yet</p>
+  <app-posth-card *ngFor="let tx of postTxs" [tx]="tx"> </app-posth-card>
+</div>

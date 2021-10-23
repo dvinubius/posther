@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RetrievePostPageComponent } from './retrieve-post-page/retrieve-post-page.component';
-import { HomeComponent } from './home/home.component';
-import { PosterComponent } from './poster/poster.component';
-import { ExplorerComponent } from './explorer/explorer.component';
-import { ReadPostPageComponent } from './read-post-page/read-post-page.component';
+import { HomeComponent } from './essentials/home/home.component';
+import {
+  ExplorerPageComponent,
+  PublishPageComponent,
+  ReadPosthPageComponent,
+  RetrievePosthPageComponent,
+} from './posths';
 
 const routes: Routes = [
-  { path: 'explorer/:howMany', component: ExplorerComponent },
-  { path: 'explorer', component: ExplorerComponent },
-  { path: 'post', component: PosterComponent },
-  { path: 'read/:txHash', component: ReadPostPageComponent },
-  { path: 'retrieve', component: RetrievePostPageComponent },
+  { path: 'explorer/:howMany', component: ExplorerPageComponent },
+  { path: 'explorer', component: ExplorerPageComponent },
+  { path: 'publish', component: PublishPageComponent },
+  { path: 'read/:txHash', component: ReadPosthPageComponent },
+  { path: 'retrieve', component: RetrievePosthPageComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
 ];
