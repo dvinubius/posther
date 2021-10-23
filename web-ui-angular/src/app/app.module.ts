@@ -19,6 +19,9 @@ import { ExplorableHashComponent } from './explorable-hash/explorable-hash.compo
 import { RetrievedPostDisplayComponent } from './retrieved-post-display/retrieved-post-display.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PosterStatusDialogComponent } from './poster-status-dialog/poster-status-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReadPostPageComponent,
     ExplorableHashComponent,
     RetrievedPostDisplayComponent,
+    PosterStatusDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,8 @@ import { MatIconModule } from '@angular/material/icon';
     ClipboardModule,
     BrowserAnimationsModule,
     MatIconModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ethers } from 'ethers';
 import { environment } from '../../environments/environment';
 import { PostsService } from '../posts.service';
-import { Web3Service } from '../web3.service';
-import { Web3ErrorService } from '../web3-error.service';
+import { Web3Service, Web3ErrorService } from '../services';
+import { MatDialog } from '@angular/material/dialog';
+import { PosterStatusDialogComponent } from '../poster-status-dialog/poster-status-dialog.component';
+import { TxStatusText } from '../services';
+import { TxStatusService } from '../services/tx-status-service';
 
-export enum TxStatusText {
-  PENDING = 'Transaction Pending',
-  SUCCESS = 'Success!',
-  FAILED = 'Transaction failed!',
-  ERROR = 'An unfortunate error occured. However, your funds are #safu.',
-}
 @Component({
   selector: 'app-poster',
   templateUrl: './poster.component.html',
@@ -19,7 +16,9 @@ export enum TxStatusText {
 export class PosterComponent implements OnInit {
   maxPostLength = environment.maxPostLength;
   inputText = '';
-  txStatus: TxStatusText | '' = '';
+  get txStatus(): TxStatusText | '' {
+    return this.txStatusSvc.txStatus;
+  }
   get disableInput(): boolean {
     return (
       [
@@ -34,17 +33,12 @@ export class PosterComponent implements OnInit {
     return this.errorSvc.noMetamaskError || this.errorSvc.noSignerError;
   }
 
-  get hasTxError() {
-    return (
-      this.txStatus === TxStatusText.ERROR ||
-      Object.values(Error).includes(this.txStatus)
-    );
-  }
-
   constructor(
     private postSvc: PostsService,
     private web3Svc: Web3Service,
-    private errorSvc: Web3ErrorService
+    private errorSvc: Web3ErrorService,
+    private matDialog: MatDialog,
+    private txStatusSvc: TxStatusService
   ) {}
 
   ngOnInit(): void {
@@ -58,13 +52,26 @@ export class PosterComponent implements OnInit {
     }
     const tx: ethers.providers.TransactionResponse | undefined =
       await this.postSvc.post(this.inputText);
-    if (!tx) {
-      this.txStatus = TxStatusText.ERROR;
-      return;
-    }
-    this.txStatus = TxStatusText.PENDING;
-    await tx.wait();
-    console.log('TX mined: ', tx.hash);
-    this.txStatus = TxStatusText.SUCCESS;
+    this.txStatusSvc.txTitle = 'Publishing';
+    this.txStatusSvc.txHash = tx?.hash ?? '';
+    const dialogRef = this.matDialog.open(PosterStatusDialogComponent, {
+      disableClose: true,
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((_) => {
+      this.txStatusSvc.reset();
+    });
+
+    this.txStatusSvc.txStatus = TxStatusText.ERROR;
+    return;
+
+    // if (!tx) {
+    //   this.txStatusSvc.txStatus = TxStatusText.ERROR;
+    //   return;
+    // }
+    // this.txStatusSvc.txStatus = TxStatusText.PENDING;
+    // await tx.wait();
+    // console.log('TX mined: ', tx.hash);
+    // this.txStatusSvc.txStatus = TxStatusText.SUCCESS;
   }
 }

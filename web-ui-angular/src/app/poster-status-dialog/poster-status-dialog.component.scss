@@ -1,0 +1,68 @@
+@import "../../assets/variables.scss";
+@import "../../assets/typography.scss";
+@import "../../assets/chain_explore_items.scss";
+@import "../../assets/palettes.scss";
+
+.display {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      @extend .text-lg;
+      font-weight: 500;
+    }
+    .material-icons {
+      color: $posther-black-2;
+      cursor: pointer;
+    }
+  }
+
+  .central-content {
+    height: 160px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.result-icon {
+  width: 60px;
+  height: 60px;
+  .material-icons {
+    font-size: 3.5rem;
+  }
+
+  &.positive {
+    color: map-get($md-secondary-palette, 700);
+  }
+  &.negative {
+    color: $posther-grey-3;
+  }
+}
+
+.status {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .status-message {
+    margin-right: 2rem;
+  }
+
+  .mt-icon {
+    border: 1px solid $posther-grey-3;
+
+    color: $posther-black;
+    .material-icons {
+      font-size: 2rem;
+    }
+  }
+}

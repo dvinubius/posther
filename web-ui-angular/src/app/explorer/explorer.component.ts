@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { PostTransaction } from '../models/post-transaction.model';
-import { Web3Service, Web3Context } from '../web3.service';
+import { Web3Service, Web3Context, TransientUsageService } from '../services';
 import { PostsService } from '../posts.service';
 import { filter } from 'rxjs/operators';
-import { TransientUsageService } from '../transient-usage.service';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 

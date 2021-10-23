@@ -6,7 +6,7 @@ import {
   Web3Provider,
 } from '@ethersproject/providers';
 import { ethers } from 'ethers';
-import { getContract } from './contract';
+import { getContract } from '../contract';
 import { environment } from 'src/environments/environment';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { BehaviorSubject, Observable, from } from 'rxjs';

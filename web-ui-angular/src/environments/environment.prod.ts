@@ -5,5 +5,6 @@ export const environment = {
   contractAddress: '',
   deploymentBlockNo: 0,
   defaultProviderUrl: '',
+  etherscanUrl: '',
   maxPostLength: 80000,
 };

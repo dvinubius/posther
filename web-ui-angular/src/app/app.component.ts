@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Web3ErrorService } from './web3-error.service';
-import { Web3Service } from './web3.service';
+import { Web3ErrorService } from './services/web3-error.service';
+import { Web3Service } from './services';
 import { NavMenuService } from './navbar/nav-menu.service';
 @Component({
   selector: 'app-root',

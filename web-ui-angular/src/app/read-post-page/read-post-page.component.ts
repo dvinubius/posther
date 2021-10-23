@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Web3Service } from '../web3.service';
+import { Web3Service } from '../services';
 import { PostsService } from '../posts.service';
 import { Post } from '../models/post.model';
 

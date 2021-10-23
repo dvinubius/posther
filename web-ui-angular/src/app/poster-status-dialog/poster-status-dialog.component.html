@@ -1,0 +1,29 @@
+<div class="display">
+  <div class="top">
+    <div class="title">{{ title }}</div>
+    <div class="material-icons" (click)="close()">close</div>
+  </div>
+  <div class="central-content">
+    <mat-spinner
+      *ngIf="isPending"
+      [diameter]="60"
+      [color]="'accent'"
+    ></mat-spinner>
+    <div class="result-icon positive" *ngIf="isSuccessful">
+      <span class="material-icons">task_alt</span>
+    </div>
+    <div class="result-icon negative" *ngIf="isError">
+      <span class="material-icons">error_outline</span>
+    </div>
+  </div>
+  <div class="status" [class.error]="hasTxError">
+    <div class="status-message">
+      {{ txStatus }}
+    </div>
+    <div class="mt-icon link-icon" *ngIf="txHash">
+      <a [href]="hashLink" target="_blank" title="View Transaction On Etherscan"
+        ><span class="material-icons">link</span></a
+      >
+    </div>
+  </div>
+</div>

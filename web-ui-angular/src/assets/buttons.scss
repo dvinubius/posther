@@ -39,7 +39,7 @@
   background-color: $primary-col;
   color: black;
   &:not(.flat) {
-    box-shadow: 0px 1px 2px 0px hsl(215, 27%, 66%);
+    box-shadow: 0px 1px 2px 0px transparentize(hsl(215, 27%, 66%), 0.2);
   }
 }
 
@@ -52,6 +52,6 @@
   background-color: $secondary-col;
   color: white;
   &:not(.flat) {
-    box-shadow: 0px 1px 2px 0px hsl(325, 27%, 66%);
+    box-shadow: 0px 1px 2px 0px transparentize(hsl(325, 27%, 66%), 0.2);
   }
 }

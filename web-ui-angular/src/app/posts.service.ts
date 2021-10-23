@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Web3Service } from './web3.service';
+import { Web3Service } from './services';
 import { PostTransaction } from './models/post-transaction.model';
 import { ethers } from 'ethers';
 import { Web3Provider, JsonRpcProvider } from '@ethersproject/providers';
 import { Post } from './models/post.model';
-import { Web3Error } from './web3-error.service';
+import { Web3Error } from './services/web3-error.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {

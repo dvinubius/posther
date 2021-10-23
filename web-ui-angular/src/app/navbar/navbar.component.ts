@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Web3Service, Web3Context } from '../web3.service';
+import { Web3Service, Web3Context } from '../services';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Web3ErrorService } from '../web3-error.service';
+import { Web3ErrorService } from '../services/web3-error.service';
 import { shortenAddress } from '../utils';
 import { NavMenuService } from './nav-menu.service';
 

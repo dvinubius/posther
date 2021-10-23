@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Web3Service } from '../web3.service';
+import { Web3Service } from '../services';
 import { Post } from '../models/post.model';
 import { PostsService } from '../posts.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-retrieve-post-page',

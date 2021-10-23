@@ -8,9 +8,6 @@
   <div class="action-btn" (click)="post()" [class.disabled]="disableInput">
     Publish
   </div>
-  <div class="status" [class.error]="hasTxError" [class.visible]="disableInput">
-    {{ txStatus }}
-  </div>
 </div>
 <div *ngIf="cannotPostError" class="error cannot-post">
   {{ cannotPostError }}

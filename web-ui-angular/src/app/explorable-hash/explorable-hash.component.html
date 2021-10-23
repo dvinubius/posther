@@ -1,13 +1,15 @@
-<div class="wrapper">
-  <app-jazzicon
-    *ngIf="hash.length !== TX_ID_LENGTH"
-    [seed]="hash"
-    [size]="18"
-    [wrapped]="true"
-  ></app-jazzicon>
-  <div class="hash" [class.tx]="hash.length === TX_ID_LENGTH">
-    {{ shortHash }}
-  </div>
+<div class="wrapper" [class.no-width]="hideHash">
+  <ng-container *ngIf="!hideHash">
+    <app-jazzicon
+      *ngIf="hash.length !== TX_ID_LENGTH"
+      [seed]="hash"
+      [size]="18"
+      [wrapped]="true"
+    ></app-jazzicon>
+    <div class="hash" [class.tx]="hash.length === TX_ID_LENGTH">
+      {{ shortHash }}
+    </div>
+  </ng-container>
   <div class="mt-icon link-icon">
     <a [href]="hashLink" target="_blank" title="View Author On Etherscan"
       ><span class="material-icons">link</span></a

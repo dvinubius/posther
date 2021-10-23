@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { isAddress } from '@ethersproject/address';
+import { environment } from 'src/environments/environment';
 import { shortenAddress, shortenTxHash } from '../utils';
 
 @Component({
@@ -9,9 +11,9 @@ import { shortenAddress, shortenTxHash } from '../utils';
 export class ExplorableHashComponent implements OnChanges {
   readonly ADDRESS_LENGTH = 42;
   readonly TX_ID_LENGTH = 66;
-  readonly BASE_URL = 'https://kovan.etherscan.io/address'; // TODO take from env
 
   @Input() hash = '';
+  @Input() hideHash = false;
   hashLink = '';
   shortHash = '';
 
@@ -24,11 +26,12 @@ export class ExplorableHashComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges(): void {
-    this.shortHash =
-      this.hash.length === this.ADDRESS_LENGTH
-        ? shortenAddress(this.hash)
-        : shortenTxHash(this.hash);
-    this.hashLink = `${this.BASE_URL}/${this.hash}`;
+    const isAddress = this.hash.length === this.ADDRESS_LENGTH;
+    this.shortHash = isAddress
+      ? shortenAddress(this.hash)
+      : shortenTxHash(this.hash);
+    const route = isAddress ? 'address' : 'tx';
+    this.hashLink = `${environment.etherscanUrl}/${route}/${this.hash}`;
   }
 
   copiedHash() {
