@@ -52,7 +52,7 @@ const getDeployment = async (hre, contractName, verbose = false) => {
     return contract;
   } catch (e) {
     console.error(e);
-    console.error("====== No deployment was found");
+    console.error("= = = No deployment was found = = =");
   }
 };
 

@@ -1,22 +1,24 @@
 require("dotenv").config();
 const { colAddrEOA, colAddrContract, colPath } = require("./utils");
 
-module.exports = async function main(hre) {
-  const EthPoster = await hre.ethers.getContractFactory("EthPoster");
+module.exports = async function main(hre, contractName) {
+  const Factory = await hre.ethers.getContractFactory(contractName);
 
   console.log("Network: ", hre.network.name);
 
-  console.log(" = = = Deploying EthPoster ...");
-  const ethPoster = await EthPoster.deploy(
+  console.log(` = = = Deploying ${contractName} = = =\n...`);
+  const contract = await Factory.deploy(
     hre.ethers.utils.parseUnits(hre.network.config.fee)
   );
-  const chainId = ethPoster.deployTransaction.chainId;
-  const receipt = await ethPoster.deployTransaction.wait();
+  const chainId = contract.deployTransaction.chainId;
+  const receipt = await contract.deployTransaction.wait();
   const { contractAddress, transactionHash, blockNumber } = receipt;
 
-  console.log("EthPoster deployed to:", colAddrContract(ethPoster.address));
-  console.log("Owner is ", colAddrEOA(await ethPoster.owner()));
-  logDeployment(hre.network.name, "EthPoster", [
+  console.log(
+    `${contractName} deployed to: ${colAddrContract(contract.address)}`
+  );
+  console.log("Owner is ", colAddrEOA(await contract.owner()));
+  logDeployment(hre.network.name, contractName, [
     chainId,
     contractAddress,
     blockNumber,

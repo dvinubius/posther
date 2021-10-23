@@ -5,8 +5,8 @@ require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
 
-const loadTasks = require("./hardhat-tasks");
-loadTasks();
+require("./tasks/general")();
+require("./tasks/posther")();
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
