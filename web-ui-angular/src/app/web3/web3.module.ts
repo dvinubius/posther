@@ -6,6 +6,7 @@ import { ExplorableHashComponent } from './explorable-hash/explorable-hash.compo
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../shared';
 import { ClipboardModule } from 'ngx-clipboard';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ClipboardModule } from 'ngx-clipboard';
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
+    RouterModule,
     SharedModule,
     ClipboardModule,
   ],

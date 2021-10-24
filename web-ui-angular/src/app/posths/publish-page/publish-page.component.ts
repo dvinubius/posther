@@ -62,16 +62,13 @@ export class PublishPageComponent implements OnInit {
       this.txStatusSvc.reset();
     });
 
-    this.txStatusSvc.txStatus = TxStatusText.ERROR;
-    return;
-
-    // if (!tx) {
-    //   this.txStatusSvc.txStatus = TxStatusText.ERROR;
-    //   return;
-    // }
-    // this.txStatusSvc.txStatus = TxStatusText.PENDING;
-    // await tx.wait();
-    // console.log('TX mined: ', tx.hash);
-    // this.txStatusSvc.txStatus = TxStatusText.SUCCESS;
+    if (!tx) {
+      this.txStatusSvc.txStatus = TxStatusText.ERROR;
+      return;
+    }
+    this.txStatusSvc.txStatus = TxStatusText.PENDING;
+    await tx.wait();
+    console.log('TX mined: ', tx.hash);
+    this.txStatusSvc.txStatus = TxStatusText.SUCCESS;
   }
 }

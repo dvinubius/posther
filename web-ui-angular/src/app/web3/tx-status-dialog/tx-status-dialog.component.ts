@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { TxStatusService, TxStatusText } from '../tx-status-service';
 
@@ -46,12 +47,18 @@ export class TxStatusDialogComponent implements OnInit {
 
   constructor(
     private txStatusSvc: TxStatusService,
-    private ref: MatDialogRef<TxStatusDialogComponent>
+    private ref: MatDialogRef<TxStatusDialogComponent>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   close() {
     this.ref.close();
+  }
+
+  navigateToRead() {
+    this.ref.close();
+    this.router.navigate(['/read', this.txHash]);
   }
 }

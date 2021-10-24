@@ -2,9 +2,10 @@
 @import "typography.scss";
 @import "chain_explore_items.scss";
 @import "palettes.scss";
+@import "buttons.scss";
 
 .display {
-  width: 360px;
+  width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +51,7 @@
   margin-top: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
 
   .status-message {
@@ -59,10 +60,31 @@
 
   .mt-icon {
     border: 1px solid $posther-grey-3;
-
     color: $posther-black;
+    margin-left: auto;
     .material-icons {
       font-size: 2rem;
+    }
+  }
+
+  .read-post {
+    margin-left: 0rem;
+    max-width: 0%;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    &.visible {
+      max-width: 100%;
+      margin-left: 1rem;
+    }
+    .read-link {
+      @extend .standard-btn;
+      text-decoration: none;
+      width: 6rem;
+      height: 2.1rem;
+
+      &:visited {
+        color: currentColor;
+      }
     }
   }
 }

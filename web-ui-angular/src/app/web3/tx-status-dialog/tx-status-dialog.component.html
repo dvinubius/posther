@@ -25,5 +25,8 @@
         ><span class="material-icons">link</span></a
       >
     </div>
+    <div class="read-post" [class.visible]="isSuccessful">
+      <a class="read-link" (click)="navigateToRead()">Read</a>
+    </div>
   </div>
 </div>
