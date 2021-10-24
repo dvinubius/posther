@@ -1,5 +1,5 @@
-@import "../../../assets/variables.scss";
-@import "../../../assets/buttons.scss";
+@import "variables";
+@import "buttons";
 
 :host {
   padding: 0 $page-lateral-pad 0;
