@@ -1,6 +1,7 @@
 const updateEnv = require("./update-angular-env");
 const { getDeploymentInfo } = require("../../scripts/last-deployed");
 const syncAbi = require("./sync-contract-abi.js");
+const fs = require("fs");
 
 const getProviderUrl = (networkName) => {
   try {
