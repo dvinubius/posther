@@ -58,17 +58,19 @@ export class PublishPageComponent implements OnInit {
       disableClose: true,
       autoFocus: false,
     });
+    let ignoreUpdates = false;
     dialogRef.afterClosed().subscribe((_) => {
       this.txStatusSvc.reset();
+      ignoreUpdates = true;
     });
 
     if (!tx) {
-      this.txStatusSvc.txStatus = TxStatusText.ERROR;
+      this.txStatusSvc.txStatus = ignoreUpdates ? '' : TxStatusText.ERROR;
       return;
     }
-    this.txStatusSvc.txStatus = TxStatusText.PENDING;
+    this.txStatusSvc.txStatus = ignoreUpdates ? '' : TxStatusText.PENDING;
     await tx.wait();
     console.log('TX mined: ', tx.hash);
-    this.txStatusSvc.txStatus = TxStatusText.SUCCESS;
+    this.txStatusSvc.txStatus = ignoreUpdates ? '' : TxStatusText.SUCCESS;
   }
 }
