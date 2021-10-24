@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  contractNetwork: 'local ganache',
-  chainId: 1337,
-contractAddress: "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
-deploymentBlockNo: 2,
+contractNetwork: "local ganache",
+chainId: 1337,
+contractAddress: "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
+blockNumber: 255,
 defaultProviderUrl: "http://localhost:8545",
-  etherscanUrl: 'https://kovan.etherscan.io',
+etherscanUrl: "",
   maxPostLength: 80000,
 };

@@ -1,26 +1,35 @@
-const fs = require("fs");
 const updateEnv = require("./update-contract-info");
-const providerUrls = require("../providers");
+
 const { getDeploymentInfo } = require("../../scripts/last-deployed");
-const getDefaultProviderUrl = require("./default-provider-url");
+const getProviderUrl = require("./get-provider");
 
 const setProdEnv = async () => {
   try {
-    const network = process.argv[2];
-    if (!network) {
-      throw "ERROR: Specify the network where the contract is deployed";
-    }
-
-    const baseDir = "src/eth-deployments";
+    const {
+      contractNetwork,
+      chainId,
+      etherscanUrl,
+      contractName,
+    } = require("./prod-deployment.config");
+    const baseDir = "./eth/deployed";
     const { contractAddress, blockNumber } = await getDeploymentInfo(
       baseDir,
-      network,
-      "EthPoster",
+      contractNetwork,
+      contractName,
       true
     );
-    const envPath = "src/environments/environment.prod.ts";
-    const providerUrl = providerUrls[network.id];
-    updateEnv(envPath, contractAddress, blockNumber, providerUrl);
+
+    const defaultProviderUrl = getProviderUrl(contractNetwork);
+    const filePath = "src/environments/environment.prod.ts";
+    updateEnv({
+      filePath,
+      contractNetwork,
+      contractAddress,
+      blockNumber,
+      defaultProviderUrl,
+      chainId,
+      etherscanUrl,
+    });
   } catch (e) {
     console.error(e);
   }
