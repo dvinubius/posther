@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { TxStatusDialogComponent } from './tx-status-dialog/tx-status-dialog.component';
 import { JazziconComponent } from './jazzicon/jazzicon.component';
 import { ExplorableHashComponent } from './explorable-hash/explorable-hash.component';
-import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../shared';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -18,7 +17,6 @@ import { ClipboardModule } from 'ngx-clipboard';
     CommonModule,
     MatProgressSpinnerModule,
     SharedModule,
-    MatIconModule,
     ClipboardModule,
   ],
   exports: [
