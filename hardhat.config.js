@@ -15,7 +15,7 @@ require("./tasks/posther")();
  */
 module.exports = {
   solidity: "0.8.4",
-  defaultNetwork: "ganache",
+  defaultNetwork: "kovan",
   networks: {
     hardhat: {
       initialBaseFeePerGas: 0, // workaround from https://github.com/sc-forks/solidity-coverage/issues/652#issuecomment-896330136 . Remove when that issue is closed.
@@ -28,7 +28,7 @@ module.exports = {
       fee: "0.0015",
     },
     kovan: {
-      url: process.env.KOVAN_URL || "",
+      url: process.env.PROVIDER_URL_KOVAN || "",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       fee: "0.0015",

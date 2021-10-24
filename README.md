@@ -1,3 +1,15 @@
+# Posther
+
+This project is a proof of concept for a dApp to persist text data on Ethereum while keeping gas fees very low. Instead of explicitly storing the text in the EVM storage, we merely keep it as part of the calldata.
+
+The contract has an owner and can be configured to take user fees, such that it does cost ETH to post. But the fee can be also set to 0.
+
+The project has been [deployed](https://kovan.etherscan.io/0xcD9bAd0cb9FeF8C73B4C4163cd51e857d8D54047) to the Kovan Test Network.
+
+Try it out [here](https://posther.vercel.app).
+
+In order to post you'll need some testnet ETH. Use this [faucet](https://kovan.chain.link/) which is kindly maintained by Chainlink.
+
 # Advanced Sample Hardhat Project
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
