@@ -140,27 +140,13 @@ $menu-icon-size: 2rem;
   border-radius: $standard-bord-rad;
   border: 1px solid $nav-menu-col;
 
-  .wrapper {
-    width: calc(var(--size) * 0.77);
-    height: calc(var(--size) * 0.42);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .material-icons {
+    color: $nav-menu-col;
     transition: all 0.1s ease-out;
-
-    * {
-      height: 1px;
-      width: 100%;
-      background-color: $nav-menu-col;
-    }
-  }
-
-  .wrapper {
-    transition: transform 0.15s ease-out;
   }
 
   &.opened {
-    .wrapper {
+    .material-icons {
       transform: scale(0.8) rotateZ(180deg);
     }
   }
