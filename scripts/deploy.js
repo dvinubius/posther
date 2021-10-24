@@ -35,14 +35,18 @@ const logDeployment = async (
   try {
     const entry = { chainId, contractAddress, blockNumber, txHash };
 
-    // const dirPath = `artifacts/contracts/deployed/${networkName}`; // would have made more sense, but files on this path are deleted when running npx hardhat console
-    const dirPath = `my-deployments/${networkName}`;
+    const dirPath = `my-deployments`;
     fs.mkdirSync(dirPath, { recursive: true }, () => {});
     const filePath = `${dirPath}/${contractName}_deployed.json`;
+
     const allLogs = fs.existsSync(filePath)
       ? JSON.parse(fs.readFileSync(filePath))
-      : [];
-    allLogs.push(entry);
+      : {};
+
+    if (!allLogs[networkName]) {
+      allLogs[networkName] = [];
+    }
+    allLogs[networkName].push(entry);
 
     fs.writeFileSync(
       filePath,
@@ -50,7 +54,7 @@ const logDeployment = async (
       { flag: "w" },
       () => {}
     );
-    console.log("Saved deployment address to ", colPath(filePath));
+    console.log("Saved deployment info to ", colPath(filePath));
   } catch (err) {
     console.error(err);
   }

@@ -25,6 +25,34 @@
     @extend .text-h2;
     width: $card-width;
   }
+
+  position: relative;
+  .spinner-wrapper {
+    $messages-height: 7.5rem;
+    $spinner-height: 37.5rem;
+    $wrapper-height: calc(#{$spinner-height} + #{$messages-height});
+    position: absolute;
+    bottom: calc(-1 * #{$wrapper-height});
+    left: 0;
+    width: 100%;
+    height: $wrapper-height;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .messages {
+      height: $messages-height;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      & > div:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
 }
 
 .which-posts {

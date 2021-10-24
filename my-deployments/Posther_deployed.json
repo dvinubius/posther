@@ -1,0 +1,24 @@
+{
+  "ganache": [
+    {
+      "chainId": 1337,
+      "contractAddress": "0x5b1869D9A4C187F2EAa108f3062412ecf0526b24",
+      "blockNumber": 32,
+      "txHash": "0x15ccfdef30744ad0985605196734b9b7a1608472f3fdbaa95a202cee91a29ec0"
+    },
+    {
+      "chainId": 1337,
+      "contractAddress": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
+      "blockNumber": 53,
+      "txHash": "0x02a9b8b1a59a500cdf022e76fa2d721bcf65c996dd13b0c644a0debadba2991a"
+    }
+  ],
+  "kovan": [
+    {
+      "chainId": 42,
+      "contractAddress": "0xB6c72708AF4949390641a1bcF7401BcD673808f0",
+      "blockNumber": 27923270,
+      "txHash": "0x0da082bd37134c692ea758a295154c5bc2fc4c6dba4f877ff8942b7c1d70b6c8"
+    }
+  ]
+}

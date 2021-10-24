@@ -9,9 +9,12 @@ import { Web3Error } from '../../web3/web3-error.service';
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   private _postNotFoundError: string = Web3Error.NO_POST;
+
   get postNotFoundError() {
     return this._postNotFoundError;
   }
+
+  isRetrieving = false;
 
   constructor(public web3Svc: Web3Service) {}
   async getMostRecentPosts(
@@ -53,17 +56,25 @@ export class PostsService {
     }
 
     console.log('Retrieving post transactions... ');
-    const parsedPostTxs = await this.getParsedTxsWithTimestamps(
-      this.web3Svc.provider,
-      deploymentBlockNo,
-      latestBlockNo,
-      isMatch,
-      howMany
-    );
-    return parsedPostTxs.map((parsedTx) => ({
-      ...parsedTx,
-      text: parsedTx.args[0],
-    }));
+    this.isRetrieving = true;
+    try {
+      const parsedPostTxs = await this.getParsedTxsWithTimestamps(
+        this.web3Svc.provider,
+        deploymentBlockNo,
+        latestBlockNo,
+        isMatch,
+        howMany
+      );
+      return parsedPostTxs.map((parsedTx) => ({
+        ...parsedTx,
+        text: parsedTx.args[0],
+      }));
+    } catch (e) {
+      console.error(e);
+      return;
+    } finally {
+      this.isRetrieving = false;
+    }
   }
 
   private async getParsedTxsWithTimestamps(

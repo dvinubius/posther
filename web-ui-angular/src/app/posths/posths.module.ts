@@ -11,6 +11,7 @@ import { ReadablePosthComponent } from './read/readable-posth/readable-posth.com
 import { RetrievedPosthComponent } from './read/retrieved-posth/retrieved-posth.component';
 import { PosthCardComponent } from './explore/posth-card/posth-card.component';
 import { Web3Module } from '../web3';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,13 @@ import { Web3Module } from '../web3';
     RetrievedPosthComponent,
     PosthCardComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule, FormsModule, Web3Module],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    FormsModule,
+    Web3Module,
+    MatProgressSpinnerModule,
+  ],
 })
 export class PosthsModule {}

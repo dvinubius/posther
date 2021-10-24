@@ -18,10 +18,10 @@ const getDeploymentInfo = (
 ) => {
   try {
     const fileData = fs.readFileSync(
-      `${baseDir}/${networkName}/${contractName}_deployed.json`,
+      `${baseDir}/${contractName}_deployed.json`,
       { encoding: "utf8", flag: "r" }
     );
-    const deployments = JSON.parse(fileData);
+    const deployments = JSON.parse(fileData)[networkName];
     const deploymentInfo = deployments[deployments.length - 1];
 
     if (verbose) {

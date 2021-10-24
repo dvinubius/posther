@@ -22,6 +22,10 @@ export class ExplorerPageComponent implements OnInit {
 
   howMany = 10;
 
+  get isRetrieving() {
+    return this.postsSvc.isRetrieving;
+  }
+
   constructor(
     public web3Svc: Web3Service,
     public postsSvc: PostsService,

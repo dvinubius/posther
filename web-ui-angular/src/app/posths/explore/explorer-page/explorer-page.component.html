@@ -7,6 +7,13 @@
       [on]="onlyMine"
     ></app-toggle-button>
   </div>
+  <div class="spinner-wrapper" *ngIf="isRetrieving">
+    <mat-spinner [diameter]="80" [color]="'primary'"></mat-spinner>
+    <div class="messages">
+      <div>Querying the blockchain...</div>
+      <div>If there are no recent posts this may take a minute</div>
+    </div>
+  </div>
 </div>
 <div class="cards" *ngIf="web3Svc.hasContract && !!postTxs">
   <p *ngIf="postTxs.length === 0">No posts yet</p>

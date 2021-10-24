@@ -1,6 +1,6 @@
 import { environment } from '../../environments/environment';
 
-import * as contractJson from '../../../eth/deployed/contract.json';
+import * as contractJson from '../../../web3-integration/contract.json';
 
 export const getContract = () => {
   return {

@@ -7,7 +7,7 @@ export const environment = {
 contractNetwork: "local ganache",
 chainId: 1337,
 contractAddress: "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
-blockNumber: 255,
+blockNumber: 53,
 defaultProviderUrl: "http://localhost:8545",
 etherscanUrl: "",
   maxPostLength: 80000,
