@@ -30,7 +30,7 @@
     height: 30rem;
     @extend .text-lg;
     font-family: $font-ibm;
-    border-color: $posther-grey-borders-light;
+    border-color: $grey-borders-light;
     border-radius: calc(2 * #{$standard-bord-rad});
     opacity: 0.8;
     padding: 0.75rem;
@@ -63,7 +63,7 @@
     justify-content: center;
     flex-direction: column;
     border-radius: $standard-bord-rad;
-    background-color: $posther-grey-5;
+    background-color: $grey-5;
     display: none;
 
     &.visible {

@@ -43,9 +43,9 @@
 }
 
 .scrollbar-thin {
-  @include scrollbars(8px, $posther-grey-4, $posther-grey-6);
+  @include scrollbars(8px, $grey-4, $grey-6);
 }
 
 .scrollbar-thin-darker {
-  @include scrollbars(8px, $posther-grey-7, $posther-grey-6);
+  @include scrollbars(8px, $grey-7, $grey-6);
 }

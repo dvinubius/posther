@@ -1,9 +1,8 @@
 @import "variables.scss";
 @import "typography.scss";
 
-$nav-menu-col: $posther-grey-3;
-$nav-menu-col: $posther-black-2;
-$nav-item-border-col: $posther-grey-borders-strong;
+$nav-menu-col: $grey-borders-ultra;
+$nav-item-border-col: $grey-borders-ultra;
 $nav-item-border: 1px solid $nav-item-border-col;
 $nav-item-width: 9.375rem;
 $nav-item-width-uncollapsed: 3.875rem;
@@ -78,7 +77,7 @@ $menu-icon-size: 2rem;
         justify-content: center;
         padding: 0 var(--semi-gutter);
         background-color: transparent;
-        color: $posther-black-2;
+        color: $black-2;
         cursor: pointer;
         transition: all 0.1s ease-out;
       }
@@ -114,7 +113,7 @@ $menu-icon-size: 2rem;
     color: black;
     &::after {
       opacity: 1;
-      border-bottom-color: $posther-black;
+      border-bottom-color: $black;
       border-radius: $standard-bord-rad;
     }
   }
@@ -156,16 +155,16 @@ $menu-icon-size: 2rem;
 .title-and-page-links.small-screen .page-links {
   position: relative;
   ul {
-    background-color: white !important;
     z-index: 1000;
     flex-direction: column;
     position: absolute;
     top: calc(#{$menu-icon-size} * 0.5 + 2px);
     left: calc(#{$menu-icon-size} * -1 - 2px - var(--gutter));
     li {
+      background-color: white !important;
       margin: 0;
       width: 7.5rem;
-      height: $menu-icon-size;
+      height: calc(1.25 * #{$menu-icon-size});
       border: $nav-item-border;
       &:first-child {
         border-top-left-radius: $standard-bord-rad;
@@ -179,7 +178,7 @@ $menu-icon-size: 2rem;
         border-top: none;
       }
       &:hover {
-        // background-color: $posther-grey-6;
+        // background-color: $grey-6;
         opacity: 1;
         color: black;
       }
@@ -228,7 +227,7 @@ $menu-icon-size: 2rem;
   align-items: center;
   justify-content: center;
   padding: 0 var(--semi-gutter);
-  // color: $posther-black-2;
+  // color: $black-2;
   font-size: 0.85em;
   height: 2rem;
   white-space: nowrap;
@@ -237,12 +236,12 @@ $menu-icon-size: 2rem;
   text-align: center;
 
   border-radius: calc(1 * #{$standard-bord-rad});
-  // background-color: $posther-grey-6;
+  // background-color: $grey-6;
   border: 1px solid $secondary-col-for-ctx-item;
 }
 
 .network {
-  border-color: $posther-grey-borders-light;
+  border-color: $grey-borders-light;
   font-family: $font-ibm-mono;
   min-width: 7.5rem;
   margin-right: var(--semi-gutter);
@@ -263,7 +262,7 @@ $menu-icon-size: 2rem;
 }
 .account {
   padding: 0 var(--semi-gutter);
-  border-color: $posther-grey-borders-light;
+  border-color: $grey-borders-light;
   font-family: $font-ibm-mono;
   display: flex;
   align-items: center;
@@ -274,7 +273,7 @@ $menu-icon-size: 2rem;
 
   &.no-connection {
     cursor: pointer;
-    background-color: $posther-grey-1;
+    background-color: $grey-1;
     color: $secondary-col;
     transition: all 0.1s ease-out;
     &:hover {
@@ -286,7 +285,7 @@ $menu-icon-size: 2rem;
 .error-snack {
   width: 100vw;
   padding: 0 var(--gutter);
-  background-color: $error-col;
+  background-color: $secondary-col-dark;
   color: white;
   display: flex;
   justify-content: center;
@@ -312,7 +311,7 @@ $menu-icon-size: 2rem;
   .ok-btn {
     margin: 0 var(--gutter);
     background-color: white;
-    color: $error-col;
+    color: $secondary-col-dark;
     cursor: pointer;
     transition: all 0.1s ease-out;
     font-weight: bold;

@@ -20,7 +20,7 @@
       font-weight: 500;
     }
     .material-icons {
-      color: $posther-black-2;
+      color: $black-2;
       cursor: pointer;
     }
   }
@@ -43,7 +43,7 @@
     color: map-get($md-secondary-palette, 700);
   }
   &.negative {
-    color: $posther-grey-3;
+    color: $grey-3;
   }
 }
 
@@ -59,8 +59,8 @@
   }
 
   .mt-icon {
-    border: 1px solid $posther-grey-3;
-    color: $posther-black;
+    border: 1px solid $grey-3;
+    color: $black;
     margin-left: auto;
     .material-icons {
       font-size: 2rem;

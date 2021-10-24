@@ -24,48 +24,43 @@ $post-width: 37.5rem;
 
 // ==== rainbows
 
-$tx-col: rgb(31, 31, 150);
-
 $primary-col: hsl(195, 53%, 79%);
-$primary-col-light: hsl(215, 46%, 93%);
-$primary-col-dark: hsl(215, 66%, 43%);
-$primary-col-for-gradient: hsla(195, 53%, 79%, 0.2);
-
-// $secondary-col: rgb(230, 173, 206);
-// $secondary-col-light: rgb(245, 220, 234);
+$primary-col-pale: hsl(195, 27%, 79%);
+$primary-col-light: hsl(195, 46%, 93%);
+$primary-col-dark: hsl(195, 66%, 35%);
 
 $secondary-col: hsl(328, 80%, 64%);
-$secondary-col-for-gradient: hsl(328, 80%, 64%, 0.063);
+$secondary-col-pale: hsl(328, 27%, 64%);
 $secondary-col-light: hsl(328, 50%, 84%);
 $secondary-col-light2: hsl(328, 80%, 84%);
 $secondary-col-for-ctx-item: hsl(328, 61%, 94%);
 
-$error-col: hsl(328, 90%, 28%);
-// $error-col: hsl(195, 93%, 24%);
+$secondary-col-dark: hsl(328, 90%, 28%);
 
-$posther-grey-1: hsl(0, 0%, 98%);
+$black: hsl(0, 0%, 6%);
+$black-2: hsl(0, 0%, 50%);
 
-$posther-grey-2: hsl(0, 0%, 99%);
+$grey-1: hsl(0, 0%, 98%);
 
-$posther-grey-3: hsl(0, 0%, 75%);
+$grey-2: hsl(0, 0%, 99%);
 
-$posther-grey-4: hsl(0, 0%, 89%);
+$grey-3: hsl(0, 0%, 75%);
 
-$posther-grey-5: hsl(0, 0%, 94%);
+$grey-4: hsl(0, 0%, 89%);
 
-$posther-grey-6: hsl(0, 0%, 97%);
+$grey-5: hsl(0, 0%, 94%);
 
-$posther-grey-7: hsl(0, 0%, 65%);
+$grey-6: hsl(0, 0%, 97%);
 
-$posther-grey-borders-light: $posther-grey-4;
-$posther-grey-borders-strong: $posther-grey-3;
+$grey-7: hsl(0, 0%, 65%);
 
-$posther-black: hsl(0, 0%, 6%);
-$posther-black-2: hsl(0, 0%, 50%);
+$grey-borders-light: $grey-4;
+$grey-borders-strong: $grey-3;
+$grey-borders-ultra: $black-2;
 
-$main-gradient: radial-gradient(
+$main-gradient-radial: radial-gradient(
   50% 50% at 50% 50%,
-  $primary-col-for-gradient 0,
+  transparentize($primary-col, 0.2) 0,
   rgba(255, 255, 255, 0) 100%
 );
 
