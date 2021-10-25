@@ -25,42 +25,54 @@
     @extend .text-h2;
     width: $card-width;
   }
+}
 
+.spinner-anchor {
   position: relative;
-  .spinner-wrapper {
-    $messages-height: 7.5rem;
-    $spinner-height: 37.5rem;
-    $wrapper-height: calc((#{$spinner-height} + #{$messages-height}) / 2);
-    position: absolute;
-    bottom: calc(-1 * #{$wrapper-height});
-    left: 0;
+  height: 0;
+  width: 100%;
+  overflow: visible;
+}
+.spinner-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(2 * #{$card-width} + #{$cards-gutter} + #{$page-lateral-pad});
+  box-sizing: content-box;
+  margin-left: calc((100vw - var(--wid) - 2 * #{$page-lateral-pad}) / 2);
+
+  .mat-spinner {
+    margin: 3rem 0;
+    align-self: center;
+  }
+
+  .messages {
+    @extend .text-lg;
+    margin-top: 2rem;
+    padding: 2rem;
     width: 100%;
-    height: $wrapper-height;
+    background-color: $grey-5;
+    border-radius: $standard-bord-rad;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    & > div:not(:last-child) {
+      margin-bottom: 1.2rem;
+    }
 
-    .messages {
-      height: $messages-height;
-      padding-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      & > div:not(:last-child) {
-        margin-bottom: 1.2rem;
-      }
-
-      .suggest-publish {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        .action-btn {
-          width: 6rem;
-          margin: 0 1rem;
-        }
-      }
+    ul {
+      margin: 0 0 1.2rem 0;
+    }
+    .action-btn {
+      width: 6rem;
+      margin: 0 1rem;
+      align-self: flex-end;
     }
   }
 }
@@ -102,6 +114,10 @@
   @extend .scrollbar-thin;
 }
 
+.none-available {
+  @extend .text-lg;
+}
+
 @media screen and (max-width: $breakpoint-sm) {
   .posts-header {
     width: 100%;
@@ -117,6 +133,12 @@
       }
     }
   }
+
+  .spinner-wrapper {
+    width: calc(100% + 0.2rem);
+    margin: 0 auto;
+  }
+
   .cards {
     flex-wrap: nowrap;
     flex-direction: column;

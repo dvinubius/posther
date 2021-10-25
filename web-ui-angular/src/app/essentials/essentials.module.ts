@@ -4,11 +4,10 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { Web3Module } from '../web3';
-import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [HomeComponent, NavbarComponent, AboutComponent],
+  declarations: [HomeComponent, NavbarComponent],
   imports: [CommonModule, RouterModule, Web3Module],
-  exports: [HomeComponent, NavbarComponent],
+  exports: [NavbarComponent],
 })
 export class EssentialsModule {}

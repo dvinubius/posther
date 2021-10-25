@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './essentials/home/home.component';
+import { HomeComponent } from './essentials';
 import {
   ExplorerPageComponent,
   PublishPageComponent,

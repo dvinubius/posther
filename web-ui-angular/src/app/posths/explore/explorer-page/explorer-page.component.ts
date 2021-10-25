@@ -52,9 +52,13 @@ export class ExplorerPageComponent implements OnInit {
   }
 
   private async _getPosts() {
-    this.postTxs = await this.postsSvc.getMostRecentPosts(
-      this.howMany,
-      this.onlyMine
+    this.postTxs = undefined;
+    setTimeout(
+      async () =>
+        (this.postTxs = await this.postsSvc.getMostRecentPosts(
+          this.howMany,
+          this.onlyMine
+        ))
     );
   }
   async toggleMine() {

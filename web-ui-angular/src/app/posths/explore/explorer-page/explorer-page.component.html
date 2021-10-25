@@ -7,21 +7,25 @@
       [on]="onlyMine"
     ></app-toggle-button>
   </div>
+</div>
+<div class="spinner-anchor">
   <div class="spinner-wrapper" *ngIf="isRetrieving">
     <mat-spinner [diameter]="80" [color]="'primary'"></mat-spinner>
     <div class="messages">
-      <div>Querying the blockchain . . .</div>
-      <div>Only recent posths are available</div>
-      <div>Cause we're not doing any fancy indexing</div>
-      <div class="suggest-publish">
-        But you can
-        <div class="action-btn" [routerLink]="['/publish']">Posth</div>
-        and come back here
-      </div>
+      <div>Querying the blockchain ...</div>
+      <div>We're not doing any fancy indexing, so</div>
+      <ul>
+        <li>Only recent posths are available (2000 blocks ~ 80 hours)</li>
+        <li>A maximum of {{ howMany }} posths are listed here</li>
+        <li>But you can publish one yourself and come back here</li>
+      </ul>
+      <div class="action-btn" [routerLink]="['/publish']">Posth</div>
     </div>
   </div>
 </div>
 <div class="cards" *ngIf="web3Svc.hasContract && !!postTxs">
-  <p *ngIf="postTxs.length === 0">No (recent) posts available</p>
+  <p *ngIf="postTxs.length === 0" class="none-available">
+    No (recent) posts available
+  </p>
   <app-posth-card *ngFor="let tx of postTxs" [tx]="tx"> </app-posth-card>
 </div>
