@@ -112,4 +112,8 @@
 .recommend-save {
   margin-top: 1rem;
   @extend .text-sm;
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
 }
