@@ -10,12 +10,18 @@
   <div class="spinner-wrapper" *ngIf="isRetrieving">
     <mat-spinner [diameter]="80" [color]="'primary'"></mat-spinner>
     <div class="messages">
-      <div>Querying the blockchain...</div>
-      <div>If there are no recent posts this may take a minute</div>
+      <div>Querying the blockchain . . .</div>
+      <div>Only recent posths are available</div>
+      <div>Cause we're not doing any fancy indexing</div>
+      <div class="suggest-publish">
+        But you can
+        <div class="action-btn" [routerLink]="['/publish']">Posth</div>
+        and come back here
+      </div>
     </div>
   </div>
 </div>
 <div class="cards" *ngIf="web3Svc.hasContract && !!postTxs">
-  <p *ngIf="postTxs.length === 0">No posts yet</p>
+  <p *ngIf="postTxs.length === 0">No (recent) posts available</p>
   <app-posth-card *ngFor="let tx of postTxs" [tx]="tx"> </app-posth-card>
 </div>

@@ -19,6 +19,12 @@
       "contractAddress": "0xB6c72708AF4949390641a1bcF7401BcD673808f0",
       "blockNumber": 27923270,
       "txHash": "0x0da082bd37134c692ea758a295154c5bc2fc4c6dba4f877ff8942b7c1d70b6c8"
+    },
+    {
+      "chainId": 42,
+      "contractAddress": "0x60e99C99BaA8Be9D1c7F229a971D16593A41fBf9",
+      "blockNumber": 27929399,
+      "txHash": "0xe30105e7db657491a4904ed7280872fce9e166407db8f3e35e7704e0ef9688fb"
     }
   ]
 }

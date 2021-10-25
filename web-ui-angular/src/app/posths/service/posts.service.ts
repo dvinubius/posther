@@ -82,14 +82,19 @@ export class PostsService {
     deploymentBlockNo: number,
     latestBlockNo: number,
     isMatch: (tx: ethers.providers.TransactionResponse) => boolean,
-    howMany: number
+    howMany: number,
+    maxBlocks = 1000
   ) {
     const parsedPostTxs: any[] = [];
+    let blocks = 0;
     for (
       let i = latestBlockNo;
-      i >= deploymentBlockNo && parsedPostTxs.length < howMany;
+      i >= deploymentBlockNo &&
+      parsedPostTxs.length < howMany &&
+      blocks <= maxBlocks;
       i--
     ) {
+      blocks++;
       const block = await provider.getBlockWithTransactions(i);
       for (let tx of block.transactions ?? []) {
         if (!isMatch(tx)) continue;
