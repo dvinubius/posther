@@ -68,6 +68,14 @@
     }
   }
 
+  .copy-icon {
+    margin-left: 1rem;
+    &::after {
+      left: 0;
+      top: -100%;
+    }
+  }
+
   .mt-icon > * {
     height: 2rem;
     width: 2rem;
@@ -104,9 +112,4 @@
 .recommend-save {
   margin-top: 1rem;
   @extend .text-sm;
-}
-
-.copy-icon::after {
-  left: 0;
-  top: -100%;
 }
