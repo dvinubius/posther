@@ -1,0 +1,26 @@
+@import "typography";
+@import "variables";
+
+:host {
+  display: block;
+  padding: 0 $page-lateral-pad;
+  margin: $page-top-pad auto 0;
+  overflow: auto;
+  height: calc(100% - #{$page-top-pad});
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 37.5rem;
+}
+
+.title {
+  margin: 0 0 2rem;
+}
+
+p {
+  line-height: 1.75rem;
+  text-align: justify;
+}

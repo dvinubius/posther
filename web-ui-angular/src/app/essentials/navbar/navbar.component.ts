@@ -1,11 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import {
   Web3Service,
   Web3Context,
   Web3ErrorService,
   shortenAddress,
 } from '../../web3';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NavMenuService } from './nav-menu.service';
 
@@ -14,7 +14,7 @@ import { NavMenuService } from './nav-menu.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   title = 'Posther';
 
   web3Ctx$!: Observable<Web3Context>;
@@ -36,6 +36,8 @@ export class NavbarComponent implements OnInit {
     return !this.isSmallScreen || this.navMenuOpened;
   }
 
+  sub = new Subscription();
+
   constructor(
     public web3Svc: Web3Service,
     public errorSvc: Web3ErrorService,
@@ -43,11 +45,17 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.navMenuSvc.closeNavMenu$.subscribe(() => (this.navMenuOpened = false));
+    const navMenuSub = this.navMenuSvc.closeNavMenu$.subscribe(
+      () => (this.navMenuOpened = false)
+    );
+    this.sub.add(navMenuSub);
     this.web3Ctx$ = this.web3Svc.web3Context$;
     this.balance$ = this.web3Svc.balance$.pipe(
       map((b) => `${b?.toFixed(4)} ETH` ?? '')
     );
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   networkName(ctx: Web3Context) {

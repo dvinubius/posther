@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <h2 class="title text-h2">About Posther</h2>
+
+  <p>
+    Posther is a proof of concept dApp deployed on Ethereum Kovan. It was
+    created with two major goals in mind.
+  </p>
+
+  <p>
+    It is an open source project to showcase some
+    <strong>basics of blockchain development</strong> on all levels of the
+    stack. You can check out the deployed contract on
+    <a [href]="contractLink" target="_blank">Etherscan</a>. The complete source
+    code is available on <a [href]="githubLink" target="_blank">Github</a>.
+  </p>
+  <p>
+    It aims to enable the persistence of plain text on Ethereum with the
+    <strong>lowest possible gas fees </strong>.
+  </p>
+
+  <p>
+    Posted text is stored as calldata. No on-chain events are emitted, no EVM
+    storage is used.
+  </p>
+
+  <p>
+    The stored text can only be retrieved by scanning transactions related to
+    the contract, but the contract state itself holds no such information.
+  </p>
+
+  <p>
+    In order to efficiently explore existing posts it would be necessary to
+    index them. This requires special backend support. An improved version of
+    this app, with such indexing capabilities, should 🙂 be available soon!
+  </p>
+
+  <p>
+    Published posths can be accessed directly via their respective transaction
+    hashes. A better UX would be to have shortlinks. Without special backend
+    support or a more complex smart contract logic, the uniqueness of such short
+    links could not be ensured. So this is nother feature for an improved
+    Posther.
+  </p>
+</div>

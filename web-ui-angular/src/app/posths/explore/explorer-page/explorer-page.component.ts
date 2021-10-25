@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { PosthTx } from '../../models/posth-tx.model';
 import { Web3Service, Web3Context } from '../../../web3';
 import { PostsService } from '../../service/posts.service';
 import { filter } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { TransientUsageService } from '../../service';
 
 @Component({
@@ -13,7 +13,7 @@ import { TransientUsageService } from '../../service';
   templateUrl: './explorer-page.component.html',
   styleUrls: ['./explorer-page.component.scss'],
 })
-export class ExplorerPageComponent implements OnInit {
+export class ExplorerPageComponent implements OnInit, OnDestroy {
   targetNetwork = environment.contractNetwork;
 
   postTxs: PosthTx[] | undefined;
@@ -25,6 +25,8 @@ export class ExplorerPageComponent implements OnInit {
   get isRetrieving() {
     return this.postsSvc.isRetrieving;
   }
+
+  sub = new Subscription();
 
   constructor(
     public web3Svc: Web3Service,
@@ -41,14 +43,20 @@ export class ExplorerPageComponent implements OnInit {
       filter((ctx: Web3Context) => ctx.foundContract)
     );
     const change$ = combineLatest([rParams$, relevantContext$]);
-    change$.subscribe(async ([p, ctx]) => {
+    const changeSub = change$.subscribe(async ([p, ctx]) => {
       if (p.howMany) this.howMany = p.howMany;
       this._getPosts();
     });
+    this.sub.add(changeSub);
 
-    this.web3Svc.web3Context$
+    const ctxSub = this.web3Svc.web3Context$
       .pipe(filter((ctx: Web3Context) => !ctx.signer))
       .subscribe(() => (this.onlyMine = false));
+    this.sub.add(ctxSub);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   private async _getPosts() {

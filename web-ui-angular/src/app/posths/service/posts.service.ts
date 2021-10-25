@@ -83,7 +83,7 @@ export class PostsService {
     latestBlockNo: number,
     isMatch: (tx: ethers.providers.TransactionResponse) => boolean,
     howMany: number,
-    maxBlocks = 2000
+    maxBlocks = 20
   ) {
     // const delay = (ms: number) =>
     //   new Promise((resolve) => setTimeout(resolve, ms));
