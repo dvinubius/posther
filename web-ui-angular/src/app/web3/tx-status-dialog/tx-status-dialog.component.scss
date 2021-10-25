@@ -105,3 +105,8 @@
   margin-top: 1rem;
   @extend .text-sm;
 }
+
+.copy-icon::after {
+  left: 0;
+  top: -100%;
+}

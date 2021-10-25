@@ -41,6 +41,7 @@
     &:disabled {
       border-color: transparent;
       background: transparent;
+      opacity: 0.4;
     }
   }
 
@@ -74,8 +75,12 @@
 }
 
 .cannot-post {
-  width: 33.75rem;
-  position: relative;
+  padding: 1rem;
+  width: fit-content;
+  background-color: white;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   margin-top: 1.5rem;
-  text-align: center;
 }

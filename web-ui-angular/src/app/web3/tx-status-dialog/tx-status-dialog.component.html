@@ -29,12 +29,11 @@
           ><span class="material-icons">link</span></a
         >
       </div>
-      <div class="mt-icon copy-icon">
+      <div class="mt-icon copy-icon" [class.used]="usedCopy">
         <div
           ngxClipboard
           [cbContent]="txHash"
           title="Copy transaction ID"
-          [class.used]="usedCopy"
           (click)="copiedId()"
         >
           <span class="material-icons">{{ copyIconKey }}</span>
@@ -47,7 +46,10 @@
     </div>
   </div>
   <div class="recommend-save" *ngIf="isSuccessful">
-    You may want to copy and save the transaction id. It's going to be on the
-    blockchain forever, but we won't remember it for you.
+    <p>Please copy and save your transaction id.</p>
+    <p>
+      It's going to be on the blockchain forever, but we won't remember it for
+      you.
+    </p>
   </div>
 </div>

@@ -188,6 +188,7 @@ export class Web3Service {
     if (!accountOk) {
       return false;
     }
+    this.errorSvc.noMetamaskError = '';
     // metamask may be on another network. make sure our state is consistent
     await this.connectContract(this.injectedProvider);
     return true;

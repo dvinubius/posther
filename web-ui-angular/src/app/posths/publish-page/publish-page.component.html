@@ -5,10 +5,10 @@
     [(ngModel)]="inputText"
     [disabled]="disableInput"
   ></textarea>
+  <div *ngIf="cannotPostError" class="error cannot-post">
+    {{ cannotPostError }}
+  </div>
   <div class="action-btn" (click)="post()" [class.disabled]="disableInput">
     Publish
   </div>
-</div>
-<div *ngIf="cannotPostError" class="error cannot-post">
-  {{ cannotPostError }}
 </div>

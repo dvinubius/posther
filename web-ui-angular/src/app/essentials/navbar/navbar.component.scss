@@ -13,11 +13,11 @@ $menu-icon-size: 2rem;
   * {
     box-sizing: content-box;
   }
+  --gutter: 1.5rem;
+  --semi-gutter: 0.75rem;
 }
 
 .navbar {
-  --gutter: 1.5rem;
-  --semi-gutter: 0.75rem;
   height: $navbar-height;
   padding: 0 $page-lateral-pad;
   display: flex;
@@ -314,7 +314,7 @@ $menu-icon-size: 2rem;
     color: $secondary-col-dark;
     cursor: pointer;
     transition: all 0.1s ease-out;
-    font-weight: bold;
+    font-weight: 500;
     padding: 0.125rem 0.5rem;
     display: flex;
     align-items: center;
