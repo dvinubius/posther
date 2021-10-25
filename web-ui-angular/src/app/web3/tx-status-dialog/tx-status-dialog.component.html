@@ -20,13 +20,34 @@
     <div class="status-message">
       {{ txStatus }}
     </div>
-    <div class="mt-icon link-icon" *ngIf="txHash">
-      <a [href]="hashLink" target="_blank" title="View Transaction On Etherscan"
-        ><span class="material-icons">link</span></a
-      >
-    </div>
+    <ng-container *ngIf="txHash">
+      <div class="mt-icon link-icon">
+        <a
+          [href]="hashLink"
+          target="_blank"
+          title="View Transaction On Etherscan"
+          ><span class="material-icons">link</span></a
+        >
+      </div>
+      <div class="mt-icon copy-icon">
+        <div
+          ngxClipboard
+          [cbContent]="txHash"
+          title="Copy transaction ID"
+          [class.used]="usedCopy"
+          (click)="copiedId()"
+        >
+          <span class="material-icons">{{ copyIconKey }}</span>
+        </div>
+      </div>
+    </ng-container>
+
     <div class="read-post" [class.visible]="isSuccessful">
       <a class="read-link" (click)="navigateToRead()">Read</a>
     </div>
+  </div>
+  <div class="recommend-save" *ngIf="isSuccessful">
+    You may want to copy and save the transaction id. It's going to be on the
+    blockchain forever, but we won't remember it for you.
   </div>
 </div>

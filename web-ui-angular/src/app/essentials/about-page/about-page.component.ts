@@ -11,7 +11,7 @@ export class AboutPageComponent implements OnInit {
     return `${environment.etherscanUrl}/address/${environment.contractAddress}`;
   }
 
-  githubLink = 'https://github.com/dvinubius';
+  githubLink = 'https://github.com/dvinubius/posther';
 
   constructor() {}
 

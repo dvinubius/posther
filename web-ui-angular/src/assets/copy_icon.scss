@@ -1,0 +1,28 @@
+@import "variables.scss";
+
+// feedback after copying to clipboard
+.copy-icon {
+  &::after {
+    position: absolute;
+    left: -270%;
+    top: 0;
+    content: "Copied";
+    background-color: $grey-4;
+    color: black;
+    padding: 0.25rem 0.5rem;
+    height: fit-content;
+    width: fit-content;
+    border-radius: $standard-bord-rad;
+    font-size: $font-size-xs;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+  }
+  &.used {
+    position: relative;
+    &::after {
+      opacity: 1;
+    }
+  }
+}

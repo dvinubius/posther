@@ -45,6 +45,12 @@ export class TxStatusDialogComponent implements OnInit {
     return this.txStatus === TxStatusText.ERROR;
   }
 
+  usedCopy = false;
+
+  get copyIconKey(): string {
+    return this.usedCopy ? 'done' : 'content_copy';
+  }
+
   constructor(
     private txStatusSvc: TxStatusService,
     private ref: MatDialogRef<TxStatusDialogComponent>,
@@ -60,5 +66,10 @@ export class TxStatusDialogComponent implements OnInit {
   navigateToRead() {
     this.ref.close();
     this.router.navigate(['/read', this.txHash]);
+  }
+
+  copiedId() {
+    this.usedCopy = true;
+    setTimeout(() => (this.usedCopy = false), 2000);
   }
 }

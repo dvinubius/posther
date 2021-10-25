@@ -3,6 +3,7 @@
 @import "chain_explore_items.scss";
 @import "palettes.scss";
 @import "buttons.scss";
+@import "copy_icon.scss";
 
 .display {
   width: 320px;
@@ -63,7 +64,18 @@
     color: $black;
     margin-left: auto;
     .material-icons {
-      font-size: 2rem;
+      font-size: 1.7rem;
+    }
+  }
+
+  .mt-icon > * {
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .material-icons {
+      font-size: 1.4rem;
     }
   }
 
@@ -87,4 +99,9 @@
       }
     }
   }
+}
+
+.recommend-save {
+  margin-top: 1rem;
+  @extend .text-sm;
 }
