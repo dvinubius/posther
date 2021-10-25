@@ -4,13 +4,14 @@ This project is a proof of concept for a dApp to persist text data on Ethereum w
 
 The contract has an owner and can be configured to take user fees, such that it does cost ETH to post. But the fee can be also set to 0.
 
-The project has been [deployed](https://kovan.etherscan.io/0xcD9bAd0cb9FeF8C73B4C4163cd51e857d8D54047) to the Kovan Test Network.
+The project has been [deployed](https://kovan.etherscan.io/address/0x60e99C99BaA8Be9D1c7F229a971D16593A41fBf9) to the Kovan Test Network.
 
 Try it out [here](https://posther.vercel.app).
 
 In order to post you'll need some testnet ETH. Use this [faucet](https://kovan.chain.link/) which is kindly maintained by Chainlink.
 
-# Advanced Sample Hardhat Project
+# For Developers
+## Advanced Sample Hardhat Project
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
 
@@ -25,7 +26,7 @@ Some useful custom tasks are included in tasks/general.js
 
 Deployment history is handled in a simple fashion. We keep track of deployments in order to use the most recently deployed contract address in specific hardhat tasks and the frontend configuration. The hardhat deploy plugin can be useful if there are more complex demands.
 
-# General Hardhat Information
+## General Hardhat Information
 
 Try running some of the following tasks:
 
@@ -48,7 +49,7 @@ npx solhint 'contracts/**/*.sol'
 npx solhint 'contracts/**/*.sol' --fix
 ```
 
-# Etherscan verification
+## Etherscan verification
 
 To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
 
