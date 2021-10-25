@@ -6,7 +6,7 @@
     "dev-sync": "nodemon ./web3-integration/angular-dev-env-sync.js --watch ../my-deployments/",
     "start": "npm run dev-sync & ng serve",
     "prod-sync": "node ./web3-integration/angular-prod-env-sync.js",
-    "build": "npm run prod-sync && ng build --prod --aot",
+    "build": "npm run prod-sync && ng build --prod --aot && cp vercel.json dist/web-ui-angular/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
