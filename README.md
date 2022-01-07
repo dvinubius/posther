@@ -6,7 +6,7 @@ The contract has an owner and can be configured to take user fees, such that it 
 
 The project has been [deployed](https://kovan.etherscan.io/address/0x60e99C99BaA8Be9D1c7F229a971D16593A41fBf9) to the Kovan Test Network.
 
-Try it out [here](https://posther.vercel.app).
+## Live [here](https://posther.vercel.app).
 
 In order to post you'll need some testnet ETH. Use this [faucet](https://kovan.chain.link/) which is kindly maintained by Chainlink.
 
